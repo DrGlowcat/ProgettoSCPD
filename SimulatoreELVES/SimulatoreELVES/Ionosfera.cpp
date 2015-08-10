@@ -19,3 +19,11 @@ Ionosfera::Ionosfera()
 Ionosfera::~Ionosfera()
 {
 }
+
+void Ionosfera::CalcImpulso(Fulmine In_Fulmine)
+{
+}
+
+void Ionosfera::SetRelPixel(Rilevatore In_Rilevatore)
+{
+}
