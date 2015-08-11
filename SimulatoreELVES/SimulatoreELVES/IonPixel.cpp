@@ -8,9 +8,21 @@ su cui si lavora.*/
 
 IonPixel::IonPixel()
 {
+
 }
 
 
 IonPixel::~IonPixel()
 {
+
+}
+
+void IonPixel::CalcolaImpulso(Fulmine InFulmine)
+{
+
+}
+
+double IonPixel::GetStatus(void)
+{
+
 }
