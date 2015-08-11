@@ -8,9 +8,20 @@ potenzialmente, possa sommare i vari contributi.*/
 
 Rilevatore::Rilevatore()
 {
+
 }
 
 
 Rilevatore::~Rilevatore()
 {
+
+}
+
+RelPixel Rilevatore::FindPixel(double In_X, double In_Y, double In_Z)
+{
+
+}
+double Rilevatore::GetStatus()
+{
+
 }
