@@ -1,5 +1,6 @@
 #pragma once
 #include "Fulmine.h"
+#include "RelPixel.h"
 class IonPixel
 {
 private:
@@ -7,6 +8,7 @@ private:
 	double PosY;
 	double PosZ;
 	double Density;
+	RelPixel* InVista; //usare una mappa associativa al posto del puntatore
 public:
 	double Status;
 public:
