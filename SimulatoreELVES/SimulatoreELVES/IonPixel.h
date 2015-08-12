@@ -16,5 +16,9 @@ public:
 	~IonPixel();
 	void CalcolaImpulso(Fulmine in_Fulmine);
 	double GetStatus();
+	double GetX();
+	double GetY();
+	double GetZ();
+	double GetDensity();
 };
 

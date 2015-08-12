@@ -26,3 +26,21 @@ double IonPixel::GetStatus(void)
 {
 
 }
+
+double IonPixel::GetX()
+{
+}
+
+double IonPixel::GetY()
+{
+}
+
+double IonPixel::GetZ()
+{
+
+}
+
+double IonPixel::GetDensity()
+{
+
+}
