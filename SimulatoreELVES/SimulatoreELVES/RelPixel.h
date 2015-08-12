@@ -5,7 +5,6 @@ private:
 	double PosX;
 	double PosY;
 	double PosZ;
-public:
 	double Status;
 public:
 	RelPixel();
