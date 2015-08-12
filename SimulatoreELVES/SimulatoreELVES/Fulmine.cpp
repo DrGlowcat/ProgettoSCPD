@@ -14,3 +14,23 @@ Fulmine::Fulmine()
 Fulmine::~Fulmine()
 {
 }
+
+double GetTempo()
+{
+}
+
+double GetX()
+{
+}
+
+double GetY()
+{
+}
+
+double GetZ()
+{
+}
+
+double GetEnergy()
+{
+}
