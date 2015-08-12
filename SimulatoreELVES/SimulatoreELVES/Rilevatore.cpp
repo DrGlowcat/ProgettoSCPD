@@ -21,7 +21,29 @@ RelPixel Rilevatore::FindPixel(double In_X, double In_Y, double In_Z)
 {
 
 }
-double Rilevatore::GetStatus()
+bool Rilevatore::GetStatus()
+{
+
+}
+double GetOrientation()
+{
+
+}
+double GetX()
+{
+
+}
+
+double GetY()
+{
+
+}
+
+double GetZ()
+{
+
+}
+int GetResolution()
 {
 
 }
