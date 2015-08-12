@@ -27,3 +27,31 @@ void Ionosfera::CalcImpulso(Fulmine In_Fulmine)
 void Ionosfera::SetRelPixel(Rilevatore In_Rilevatore)
 {
 }
+
+int Ionosfera::GetResolution()
+{
+}
+
+double Ionosfera::GetCenterX()
+{
+}
+
+double Ionosfera::GetCenterY()
+{
+}
+
+double Ionosfera::GetCenterZ()
+{
+}
+
+double Ionosfera::GetDeltaX()
+{
+}
+
+double Ionosfera::GetDeltaY()
+{
+}
+
+double Ionosfera::GetDeltaZ()
+{
+}
