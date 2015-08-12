@@ -19,3 +19,23 @@ double RelPixel::GetStatus()
 {
 
 }
+
+void SetStatus(double In_Status)
+{
+
+}
+
+double GetX()
+{
+
+}
+
+double GetY()
+{
+
+}
+
+double GetZ()
+{
+
+}

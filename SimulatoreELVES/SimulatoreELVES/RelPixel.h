@@ -10,5 +10,9 @@ public:
 	RelPixel();
 	~RelPixel();
 	double GetStatus();
+	void SetStatus(double In_Status);
+	double GetX();
+	double GetY();
+	double GetZ();
 };
 
