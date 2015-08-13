@@ -8,6 +8,7 @@ private:
 	double Status;
 public:
 	RelPixel();
+	RelPixel(double X, double Y, double Z);
 	~RelPixel();
 	double GetStatus();
 	void SetStatus(double In_Status);

@@ -6,36 +6,50 @@ che siano significative e soprattutto correte.*/
 #include "RelPixel.h"
 
 
-RelPixel::RelPixel()
+RelPixel::RelPixel(void)
 {
+	//costruttore vuoto da usare per la dichiarazione e dimensionamento
+	PosX = 0;
+	PosY = 0;
+	PosZ = 0;
+	Status = 0;
 }
 
+RelPixel::RelPixel(double X, double Y, double Z)
+{
+	//Costruttore di inizializzazione
+	PosX = X;
+	PosY = Y;
+	PosZ = Z;
+	Status = 0;
+}
 
 RelPixel::~RelPixel()
 {
+	delete this;
 }
 
 double RelPixel::GetStatus()
 {
-
+	return Status;
 }
 
 void RelPixel::SetStatus(double In_Status)
 {
-
+	Status = In_Status;
 }
 
 double RelPixel::GetX()
 {
-
+	return PosX;
 }
 
 double RelPixel::GetY()
 {
-
+	return PosY;
 }
 
 double RelPixel::GetZ()
 {
-
+	return PosZ;
 }
