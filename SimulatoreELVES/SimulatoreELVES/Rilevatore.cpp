@@ -25,25 +25,25 @@ bool Rilevatore::GetStatus()
 {
 
 }
-double GetOrientation()
+double Rilevatore::GetOrientation()
 {
 
 }
-double GetX()
-{
-
-}
-
-double GetY()
+double Rilevatore::GetX()
 {
 
 }
 
-double GetZ()
+double Rilevatore::GetY()
 {
 
 }
-int GetResolution()
+
+double Rilevatore::GetZ()
+{
+
+}
+int Rilevatore::GetResolution()
 {
 
 }

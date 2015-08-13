@@ -20,22 +20,22 @@ double RelPixel::GetStatus()
 
 }
 
-void SetStatus(double In_Status)
+void RelPixel::SetStatus(double In_Status)
 {
 
 }
 
-double GetX()
+double RelPixel::GetX()
 {
 
 }
 
-double GetY()
+double RelPixel::GetY()
 {
 
 }
 
-double GetZ()
+double RelPixel::GetZ()
 {
 
 }

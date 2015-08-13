@@ -15,22 +15,22 @@ Fulmine::~Fulmine()
 {
 }
 
-double GetTempo()
+double Fulmine::GetTempo()
 {
 }
 
-double GetX()
+double Fulmine::GetX()
 {
 }
 
-double GetY()
+double Fulmine::GetY()
 {
 }
 
-double GetZ()
+double Fulmine::GetZ()
 {
 }
 
-double GetEnergy()
+double Fulmine::GetEnergy()
 {
 }
