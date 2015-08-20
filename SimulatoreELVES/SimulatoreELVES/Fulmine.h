@@ -2,18 +2,17 @@
 class Fulmine
 {
 private:
-	double PosX;
-	double PosY;
-	double PosZ;
+	double Lat;
+	double Long;
 	double Energy;
 public:
 	double Tempo;
 public:
 	Fulmine();
 	~Fulmine();
+	void SetBolt(double &,double &,double &,double &);
 	double GetTempo();
-	double GetX();
-	double GetY();
-	double GetZ();
+	double GetLat();
+	double GetLong();
 	double GetEnergy();
 };
