@@ -3,10 +3,14 @@
 class Rilevatore
 {
 private:
-	double PosX;
+	double PosX;  //a che cosa sono riferite?
 	double PosY;
 	double PosZ;
+	double LatSite;  //latitudine del telescopio cui appartiene il rilevatore
+	double LongSite;
+//4 telescopi --> 4 gruppi di 6 rilevatori e 4 posizioni diverse
 	double Orientation;
+	double FoV;  //Field of View: campo visivo del rivelatore, in gradi, centrato sull'Orientation
 	bool Status; //indica se acceso o spento.
 	int Resolution;
 	RelPixel* Matrice_Osservazione;
