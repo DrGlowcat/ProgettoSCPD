@@ -3,7 +3,7 @@
 class Rilevatore
 {
 private:
-	double PosX;  //a che cosa sono riferite?
+	double PosX;  //si riferiscono alla posizione del rilevatore una sorta di media della posizione dei singoli pixel
 	double PosY;
 	double PosZ;
 	double LatSite;  //latitudine del telescopio cui appartiene il rilevatore

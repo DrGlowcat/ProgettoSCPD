@@ -30,7 +30,7 @@ double Rilevatore::GetOrientation()
    /* è ancora una bozza: per la tesi avevo fatto il calcolo usando vettori 3D,
 	 * che sono però una classe di ROOT. devo capire come farlo con gli strumenti del C++
 	 */
-	double degree = 3.14159265359/180.  //in realtà conviene fare un file .h con tutte le costanti
+	double degree = 3.14159265359 / 180;  //in realtà conviene fare un file .h con tutte le costanti
 	double SiteLocation[2];  //coordinate del sito cui appartiene il rilevatore
 	double Phi = LatSite*degree;  //coord espresse in radianti
 	double Theta = LongSite*degree;
