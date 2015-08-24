@@ -4,9 +4,6 @@ inizializzazione.
 DA DECIDERE: il calcolo della funzione sui pixel potrebbe essere lanciato da qui, ma devo controllare
 se ci sono problemi in fase di parallelizzazione.*/
 
-//#######################################################################
-//AGGIORNARE IL FILE Ionosfera.h OGNI VOLTA CHE INSERIAMO UN NUOVO METODO
-//#######################################################################
 #include "stdafx.h"
 #include "Ionosfera.h"
 
