@@ -16,13 +16,12 @@ private:
 	double FoV;  //Field of View: campo visivo del rivelatore, in gradi, centrato sull'Orientation
 	bool Status; //indica se acceso o spento.
 	int Resolution;
-	//RelPixel* Matrice_Osservazione;//devo capire ancora come funziona.
 	map<int, RelPixel> Matrice_Osservazione;
 public:
 	Rilevatore();
 	Rilevatore(double Lat, double Long, double fOv, int res);
 	~Rilevatore();
-	RelPixel FindPixel(double In_X, double In_Y, double In_Z);
+	RelPixel Rel2Ion(double In_X, double In_Y, double In_Z);
 	bool GetStatus();
 	double GetOrientation();
 	/*double GetX();

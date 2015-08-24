@@ -26,7 +26,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double fOv, int res)
 {
 	LatSite = Lat;
 	LongSite = Long;
-	Orientation = 0;
+	Orientation = 0; //il codice di GetOrientation penso che vada qui.
 	FoV = fOv;
 	Status = 0;
 	Resolution = res;
@@ -42,16 +42,16 @@ Rilevatore::~Rilevatore()
 	delete this;
 }
 
-RelPixel Rilevatore::FindPixel(double In_X, double In_Y, double In_Z)
+RelPixel Rilevatore::Rel2Ion(double In_X, double In_Y, double In_Z)
 {
-	/*qui si forniscono delle caretteristiche univoche per un certo pixel
-	e tramite le stesse si esegue una ricerca su tutta la matrice (mappa) 
-	del rilevatore. Una volta che il pixel è trovato si restituisce il 
-	pixel stesso.*/
+	/*questa funzione è pensata per assegnare un certo pixel del rilevatore 
+	a un pixel della ionosfera. Il dato che ritorna dovrebbe essere un puntatore
+	al pixel del rilevatore, in modo da rendere più facile la modifica da parte 
+	dei metodi degli IonPixel.*/
 }
 bool Rilevatore::GetStatus()
 {
-
+	return Status;
 }
 double Rilevatore::GetOrientation()
 {
@@ -66,28 +66,28 @@ double Rilevatore::GetOrientation()
 /*
 double Rilevatore::GetX()
 {
-
+	return PosX;
 }
 
 double Rilevatore::GetY()
 {
-
+	return PosY;
 }
 
 double Rilevatore::GetZ()
 {
-
+	return PosZ;
 }
 */
 double Rilevatore::GetLatSite()
 {
-
+	return LatSite;
 }
 double Rilevatore::GetLongSite()
 {
-
+	return LongSite;
 }
 int Rilevatore::GetResolution()
 {
-
+	return Resolution;
 }
