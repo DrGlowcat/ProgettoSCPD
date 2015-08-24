@@ -4,6 +4,8 @@
 #include "Fulmine.h"
 #include "Rilevatore.h"
 #include "IonPixel.h"
+#include <map>
+using namespace std;
 class Ionosfera
 {
 private :
@@ -15,9 +17,10 @@ private :
 	double DeltaX;
 	double DeltaY;
 	double DeltaZ;
-	IonPixel* Matrix; //da implementare usando il contenitore "map"
+	map<int, IonPixel> Matrix;
 public:
 	Ionosfera();
+	Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_CenterZ, double In_DeltaX, double In_DeltaY, double In_DeltaZ);
 	~Ionosfera();
 	void CalcImpulso(Fulmine In_Fulmine);
 	void SetRelPixel(Rilevatore In_Rilevatore);
