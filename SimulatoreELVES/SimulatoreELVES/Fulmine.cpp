@@ -8,15 +8,27 @@ che il fulmine è stato dichiarato non dovrebbe essere più modificato.*/
 
 Fulmine::Fulmine()
 {
-  SetBolt(Tempo,Lat,Long,Energy);
+  //SetBolt(Tempo,Lat,Long,Energy);
+	Lat = 0;
+	Long = 0;
+	Energy = 0;
+	Tempo = 0;
 }
 
+Fulmine::Fulmine(double In_Tempo, double In_Lat, double In_Long, double In_Energy)
+{
+	Lat = In_Lat;
+	Long = In_Long;
+	Energy = In_Energy;
+	Tempo = In_Tempo;
+}
 
 Fulmine::~Fulmine()
 {
+	delete this;
 }
 
-void SetBolt(double &Tempo, double &Lat, double &Long, double &Energy)
+void Fulmine::SetBolt(double &Tempo, double &Lat, double &Long, double &Energy)
 {
 	//Tempo=some rand();  misurato in microsec
 	//Lat=some rand();   in gradi da Greenwich; range: [-41.5828;-25.25]
