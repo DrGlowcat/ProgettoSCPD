@@ -2,6 +2,7 @@
 #include "Fulmine.h"
 #include "RelPixel.h"
 #include <map>
+using namespace std;
 class IonPixel
 {
 private:
@@ -9,7 +10,7 @@ private:
 	double PosY;
 	double PosZ;
 	double Density;
-	std::map<int,RelPixel> InVista; //mappiamo i pixel in vista in modo dinamico.
+	map<int,RelPixel> InVista; //mappiamo i pixel in vista in modo dinamico.
 	double Status;
 public:
 	IonPixel();
