@@ -14,6 +14,7 @@ private:
 	double Status;
 public:
 	IonPixel();
+	IonPixel(double In_PosX, double In_PosY, double In_PosZ);
 	~IonPixel();
 	void SetInVista();
 	void CalcolaImpulso(Fulmine in_Fulmine);

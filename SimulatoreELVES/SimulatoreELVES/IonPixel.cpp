@@ -16,6 +16,16 @@ IonPixel::IonPixel()
 	Status = 0;
 }
 
+IonPixel::IonPixel(double In_PosX, double In_PosY, double In_PosZ)
+{
+	PosX = In_PosX;
+	PosY = In_PosY;
+	PosZ = In_PosZ;
+	Density = 0;
+	Status = 0;
+	/*NOTA, useremo il SetInVista per riempire la matrice InVista
+	questo però ha senso farlo in un secondo momento.*/
+}
 
 IonPixel::~IonPixel()
 {

@@ -42,7 +42,15 @@ Ionosfera::Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, d
 	}
 	else
 	{
+		//deve essere coscente della presenza dei rilevatori. serve riferimento al main.
 		//allora riempila==> usare .insert con l'oggetto da inserire.
+		for (int i = 0; i < Resolution; i++)
+		{
+			//Matrix.insert(std::pair<int, IonPixel> (i,IonPixel()));
+			Matrix[i] = IonPixel();
+			/*NOTA: per ora ogni pixel è vuoto devo implementare il 
+			costruttore idoneo per i pixel prima di poter proseguire*/
+		}
 	}
 }
 
