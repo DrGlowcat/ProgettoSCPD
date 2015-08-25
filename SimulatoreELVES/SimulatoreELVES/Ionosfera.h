@@ -18,9 +18,10 @@ private :
 	double DeltaY;
 	double DeltaZ;
 	map<int, IonPixel> Matrix;
+	map<int, Rilevatore> GroundRel;
 public:
 	Ionosfera();
-	Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_CenterZ, double In_DeltaX, double In_DeltaY, double In_DeltaZ);
+	Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_CenterZ, double In_DeltaX, double In_DeltaY, double In_DeltaZ, map<int, Rilevatore> In_GroundRel);
 	~Ionosfera();
 	void CalcImpulso(Fulmine In_Fulmine);
 	void SetRelPixel(Rilevatore In_Rilevatore);

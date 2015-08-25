@@ -25,7 +25,7 @@ Ionosfera::Ionosfera()
 	}
 }
 
-Ionosfera::Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_CenterZ, double In_DeltaX, double In_DeltaY, double In_DeltaZ)
+Ionosfera::Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_CenterZ, double In_DeltaX, double In_DeltaY, double In_DeltaZ, map<int, Rilevatore> In_GroundRel)
 {
 	Resolution = In_Resolution;
 	CurveRad = In_CurveRad;
@@ -35,6 +35,7 @@ Ionosfera::Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, d
 	DeltaX = In_DeltaX;
 	DeltaY = In_DeltaY;
 	DeltaZ = In_DeltaZ;
+	GroundRel = In_GroundRel;// ora vedo i rilevatori
 	if (!Matrix.empty())
 	{
 		map<int, IonPixel> EmptyMatrix;
@@ -42,12 +43,15 @@ Ionosfera::Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, d
 	}
 	else
 	{
-		//deve essere coscente della presenza dei rilevatori. serve riferimento al main.
-		//allora riempila==> usare .insert con l'oggetto da inserire.
+		// definire come calcolare la posizione del particolare pixel
+		double pixX=0.0;
+		double pixY=0.0;
+		double pixZ=0.0;
+		//
 		for (int i = 0; i < Resolution; i++)
 		{
 			//Matrix.insert(std::pair<int, IonPixel> (i,IonPixel()));
-			Matrix[i] = IonPixel();
+			Matrix[i] = IonPixel(pixX, pixY, pixZ,GroundRel);
 			/*NOTA: per ora ogni pixel è vuoto devo implementare il 
 			costruttore idoneo per i pixel prima di poter proseguire*/
 		}

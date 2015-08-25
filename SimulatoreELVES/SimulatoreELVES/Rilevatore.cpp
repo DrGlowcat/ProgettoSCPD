@@ -42,7 +42,7 @@ Rilevatore::~Rilevatore()
 	delete this;
 }
 
-RelPixel Rilevatore::Rel2Ion(double In_X, double In_Y, double In_Z)
+map<int, RelPixel> Rilevatore::Rel2Ion(double In_X, double In_Y, double In_Z)
 {
 	/*questa funzione è pensata per assegnare un certo pixel del rilevatore 
 	a un pixel della ionosfera. Il dato che ritorna dovrebbe essere un puntatore
