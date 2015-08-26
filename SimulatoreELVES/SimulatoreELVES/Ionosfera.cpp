@@ -43,13 +43,16 @@ Ionosfera::Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, d
 	}
 	else
 	{
-		// definire come calcolare la posizione del particolare pixel
 		double pixX=0.0;
 		double pixY=0.0;
 		double pixZ=0.0;
 		//
 		for (int i = 0; i < Resolution; i++)
 		{
+			// definire come calcolare la posizione del particolare pixel
+			pixX = 21.12;
+			pixY = 21.12;
+			pixZ = 21.12;
 			//Matrix.insert(std::pair<int, IonPixel> (i,IonPixel()));
 			Matrix[i] = IonPixel(pixX, pixY, pixZ,GroundRel);
 			/*NOTA: per ora ogni pixel è vuoto devo implementare il 
