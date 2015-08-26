@@ -35,6 +35,23 @@ Rilevatore::Rilevatore(double Lat, double Long, double fOv, int res)
 		map<int, RelPixel> EmptyMatrix;
 		Matrice_Osservazione = EmptyMatrix;
 	}
+	else
+	{
+		double pixX = 0.0;
+		double pixY = 0.0;
+		double pixZ = 0.0;
+		for (int i = 0; i < Resolution; i++)
+		{
+			// definire come calcolare la posizione del particolare pixel
+			pixX = 31.13;
+			pixY = 31.13;
+			pixZ = 31.13;
+			Matrice_Osservazione[i] = RelPixel(pixX, pixY, pixZ);
+		}
+	}
+	/*come si vede, è del tutto simile a quanto accade in Ionosfera, ma la 
+	"catena" di chiamate a funzione è molto più breve, ovvero si crea direttamente
+	il pixel e non si va oltre.*/
 }
 
 Rilevatore::~Rilevatore()
