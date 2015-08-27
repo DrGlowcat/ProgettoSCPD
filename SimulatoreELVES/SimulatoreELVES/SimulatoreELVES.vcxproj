@@ -89,6 +89,8 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="test.h" />
+    <ClInclude Include="Tools.h" />
+    <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Fulmine.cpp" />
@@ -102,6 +104,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SimulatoreELVES.rc" />

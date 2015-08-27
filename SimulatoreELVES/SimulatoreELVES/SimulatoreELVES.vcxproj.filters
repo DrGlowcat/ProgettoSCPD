@@ -45,6 +45,12 @@
     <ClInclude Include="Fulmine.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="Tools.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -69,6 +75,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="Fulmine.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
