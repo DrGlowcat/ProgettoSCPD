@@ -9,6 +9,8 @@ private:
 	/*double PosX;  //si riferiscono alla posizione del rilevatore una sorta di media della posizione dei singoli pixel
 	double PosY;
 	double PosZ;*/
+	//AGGIUNGERE la porzione propria i atmosfera
+	//gli va dato in pasto un insieme di riferimenti globali
 	double LatSite;  //latitudine del telescopio cui appartiene il rilevatore
 	double LongSite;
 //4 telescopi --> 4 gruppi di 6 rilevatori e 4 posizioni diverse

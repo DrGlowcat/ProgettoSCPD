@@ -37,6 +37,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double fOv, int res)
 	}
 	else
 	{
+		//sostituire le coordinate con una porzione del campo di vista.
 		double pixX = 0.0;
 		double pixY = 0.0;
 		double pixZ = 0.0;

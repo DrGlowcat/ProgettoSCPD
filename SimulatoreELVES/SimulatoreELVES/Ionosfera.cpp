@@ -10,6 +10,7 @@ se ci sono problemi in fase di parallelizzazione.*/
 
 Ionosfera::Ionosfera()
 {
+	//sostituire con due angoli e due soglie limite.
 	Resolution = 0;
 	CurveRad = 0.0;
 	CenterX = 0.0;

@@ -14,6 +14,7 @@ IonPixel::IonPixel()
 	PosZ = 0;
 	Density = 0;
 	Status = 0;
+	//inserire tempo dell'evento
 }
 
 IonPixel::IonPixel(double In_PosX, double In_PosY, double In_PosZ, map<int, Rilevatore> In_GroundRel)
