@@ -5,10 +5,6 @@ using namespace std;
 class Rilevatore
 {
 private:
-	//se la posizione è identificata da latitudine e longitudine, x,y,z sono inutili.
-	/*double PosX;  //si riferiscono alla posizione del rilevatore una sorta di media della posizione dei singoli pixel
-	double PosY;
-	double PosZ;*/
 	//AGGIUNGERE la porzione propria i atmosfera
 	//gli va dato in pasto un insieme di riferimenti globali
 	double LatSite;  //latitudine del telescopio cui appartiene il rilevatore
@@ -26,9 +22,6 @@ public:
 	map<int, RelPixel> Rel2Ion(double In_X, double In_Y, double In_Z);
 	bool GetStatus();
 	double GetOrientation();
-	/*double GetX();
-	double GetY();
-	double GetZ();*/
 	double GetLatSite();
 	double GetLongSite();
 	int GetResolution();

@@ -37,17 +37,17 @@ Rilevatore::Rilevatore(double Lat, double Long, double fOv, int res)
 	}
 	else
 	{
-		//sostituire le coordinate con una porzione del campo di vista.
-		double pixX = 0.0;
-		double pixY = 0.0;
-		double pixZ = 0.0;
+		// Andrebbe cambiato il nome perchè so che non si chiamano così gli angoli...
+		double PixOrientation = 0.0;
+		double VertAngle = 0.0;
+		double HoriAngle = 0.0;
 		for (int i = 0; i < Resolution; i++)
 		{
 			// definire come calcolare la posizione del particolare pixel
-			pixX = 31.13;
-			pixY = 31.13;
-			pixZ = 31.13;
-			Matrice_Osservazione[i] = RelPixel(pixX, pixY, pixZ);
+			PixOrientation = 31.13;
+			VertAngle = 31.13;
+			HoriAngle = 31.13;
+			Matrice_Osservazione[i] = RelPixel(PixOrientation, VertAngle, HoriAngle);
 		}
 	}
 	/*come si vede, è del tutto simile a quanto accade in Ionosfera, ma la 
@@ -81,22 +81,6 @@ double Rilevatore::GetOrientation()
 	double Phi = LatSite*degree;  //coord espresse in radianti
 	double Theta = LongSite*degree;
 }
-/*
-double Rilevatore::GetX()
-{
-	return PosX;
-}
-
-double Rilevatore::GetY()
-{
-	return PosY;
-}
-
-double Rilevatore::GetZ()
-{
-	return PosZ;
-}
-*/
 double Rilevatore::GetLatSite()
 {
 	return LatSite;
