@@ -41,6 +41,8 @@ Rilevatore::Rilevatore(double Lat, double Long, double fOv, int res)
 		double PixOrientation = 0.0;
 		double VertAngle = 0.0;
 		double HoriAngle = 0.0;
+		double pixX=0.;
+		double pixY=0.;
 		for (int i = 0; i < 22; i++)//ciclo sulle colonne
 		{
 			for(int j=0; j<20; j++)//ciclo sulle righe
