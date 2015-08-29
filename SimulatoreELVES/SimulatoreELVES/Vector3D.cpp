@@ -31,6 +31,22 @@ double Vector3D::GetZ()
 {
 	return comp_z;
 }
+
+void SetX(double xx)
+{
+	comp_x = xx;
+}
+
+void SetY(double yy)
+{
+	comp_y = yy;
+}
+
+void SetZ(double zz)
+{
+	comp_z = zz;
+}
+
 //calcola norma del vettore dato un puntatore al vettore
 double Vector3D::Norma()
 {
@@ -86,3 +102,17 @@ double Vector3D::Angle(Vector3D *v)
 		return angle;
 	}
 }
+
+//imposta la norma di un vettore al valore del double fornito
+void SetMag(double n)
+{
+	double factor = Norma();
+	if(factor != 0)
+	{
+		factor = n/factor;
+		SetX(comp_x*factor);
+		SetY(comp_y*factor);
+		SetZ(comp_z*factor);
+	}
+}
+
