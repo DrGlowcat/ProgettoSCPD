@@ -2,9 +2,9 @@
 class RelPixel
 {
 private:
-	double PosX;
-	double PosY;
-	double PosZ;
+	double Orientation;
+	double VertAngle;
+	double HoriAngle;
 	double Status;
 public:
 	RelPixel();
@@ -12,8 +12,8 @@ public:
 	~RelPixel();
 	double GetStatus();
 	void SetStatus(double In_Status);
-	double GetX();
-	double GetY();
-	double GetZ();
+	double GetOrientation();
+	double GetVertAngle();
+	double GetHoriAngle();
 };
 

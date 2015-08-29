@@ -9,18 +9,18 @@ che siano significative e soprattutto correte.*/
 RelPixel::RelPixel(void)
 {
 	//costruttore vuoto da usare per la dichiarazione e dimensionamento
-	PosX = 0;
-	PosY = 0;
-	PosZ = 0;
+	Orientation = 0;
+	VertAngle = 0;
+	HoriAngle = 0;
 	Status = 0;
 }
 
 RelPixel::RelPixel(double X, double Y, double Z)
 {
 	//Costruttore di inizializzazione
-	PosX = X;
-	PosY = Y;
-	PosZ = Z;
+	Orientation = X;
+	VertAngle = Y;
+	HoriAngle = Z;
 	Status = 0;
 }
 
@@ -39,17 +39,17 @@ void RelPixel::SetStatus(double In_Status)
 	Status = In_Status;
 }
 
-double RelPixel::GetX()
+double RelPixel::GetOrientation()
 {
-	return PosX;
+	return Orientation;
 }
 
-double RelPixel::GetY()
+double RelPixel::GetVertAngle()
 {
-	return PosY;
+	return VertAngle;
 }
 
-double RelPixel::GetZ()
+double RelPixel::GetHoriAngle()
 {
-	return PosZ;
+	return HoriAngle;
 }
