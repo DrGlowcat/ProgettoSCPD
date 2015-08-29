@@ -41,13 +41,17 @@ Rilevatore::Rilevatore(double Lat, double Long, double fOv, int res)
 		double PixOrientation = 0.0;
 		double VertAngle = 0.0;
 		double HoriAngle = 0.0;
-		for (int i = 0; i < Resolution; i++)
+		for (int i = 0; i < 22; i++)//ciclo sulle colonne
 		{
-			// definire come calcolare la posizione del particolare pixel
-			PixOrientation = 31.13;
-			VertAngle = 31.13;
-			HoriAngle = 31.13;
-			Matrice_Osservazione[i] = RelPixel(PixOrientation, VertAngle, HoriAngle);
+			for(int j=0; j<20; j++)//ciclo sulle righe
+			{
+				//larghezza del pixel=1.5°=45.6mm, altezza=0.866°=26.33mm
+				//le coordinate si riferiscono al centro del pixel
+				pixX = i*0.5*45.6;
+				pixY = j*0.5*26.33;
+				//pixZ = 31.13;
+				Matrice_Osservazione[i] = RelPixel(pixX, pixY, pixZ);
+			}
 		}
 	}
 	/*come si vede, è del tutto simile a quanto accade in Ionosfera, ma la 
@@ -73,13 +77,11 @@ bool Rilevatore::GetStatus()
 }
 double Rilevatore::GetOrientation()
 {
-   /* è ancora una bozza: per la tesi avevo fatto il calcolo usando vettori 3D,
-	 * che sono però una classe di ROOT. devo capire come farlo con gli strumenti del C++
-	 */
-	double degree = 3.14159265359 / 180;  //in realtà conviene fare un file .h con tutte le costanti
-	double SiteLocation[2];  //coordinate del sito cui appartiene il rilevatore
-	double Phi = LatSite*degree;  //coord espresse in radianti
-	double Theta = LongSite*degree;
+	//PROVVISORIO: VALE SOLO PER IL TELESCOPIO DI LL,
+	//quando ci saranno tutti i telesc bisognerà usare il vettore dei backwall
+	double backwall = -30.;  //gradi rispetto all'est del bordo del FoV di LL
+	double orientation = backwall + 90.;
+	return orientation;
 }
 double Rilevatore::GetLatSite()
 {
