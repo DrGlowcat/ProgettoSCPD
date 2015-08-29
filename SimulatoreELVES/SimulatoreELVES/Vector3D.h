@@ -21,6 +21,9 @@ public:
 	double GetX();
 	double GetY();
 	double GetZ();
+	void SetX(double);
+	void SetY(double);
+	void SetZ(double);
 	double Norma();  //calcola norma del vettore dato un puntatore al vettore
 	double Norma2();  //calcola norma al quadrato del vettore
 	double Dot(Vector3D *);  //prodotto scalare tra due vettori
@@ -28,5 +31,6 @@ public:
 	double GetTheta();  //restituisce angolo polare, devo capire in quale sistema di riferimento conviene mettersi
 	double GetPhi();  //restituisce azimut
 	double Angle(Vector3D *);  //angolo tra due vettori
+	void SetMag(double);  //imposta la norma di un vettore al valore del double fornito
 };
 #endif /* VECTOR3D_H_ */
