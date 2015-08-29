@@ -12,15 +12,15 @@ Fulmine::Fulmine()
 	Lat = 0;
 	Long = 0;
 	Energy = 0;
-	Tempo = 0;
+	MaxRange = 0;
 }
 
-Fulmine::Fulmine(double In_Tempo, double In_Lat, double In_Long, double In_Energy)
+Fulmine::Fulmine(double In_Lat, double In_Long, double In_Energy)
 {
 	Lat = In_Lat;
 	Long = In_Long;
 	Energy = In_Energy;
-	Tempo = In_Tempo;
+	MaxRange = Energy * 3; //Formula giocattolo
 }
 
 Fulmine::~Fulmine()
@@ -28,18 +28,20 @@ Fulmine::~Fulmine()
 	delete this;
 }
 
+/*
+lo lascio qui momentaneamente in modo da mantenere i calcolo del campo visivo masismo
 void Fulmine::SetBolt(double &Tempo, double &Lat, double &Long, double &Energy)
 {
 	//Tempo=some rand();  misurato in microsec
 	//Lat=some rand();   in gradi da Greenwich; range: [-41.5828;-25.25]
 	//Long=some rand();   range: [-79.25;-59.25]
 	//Energy=some rand();   in joule. forse non serve
-}
+}*/
 
 
-double Fulmine::GetTempo()
+double Fulmine::GetMaxRange()
 {
-	return Tempo;
+	return MaxRange;
 }
 
 //il fulmine ha solo latitudine e longitudine

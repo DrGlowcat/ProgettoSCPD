@@ -6,14 +6,13 @@ private:
 	double Long;
 	double Energy;
 public:
-	double Tempo;//inutile, si parte da t0
-	//inserire raggio massimo.
+	double MaxRange;
 public:
 	Fulmine();
-	Fulmine(double In_Tempo, double In_Lat, double In_Long, double In_Energy);
+	Fulmine(double In_Lat, double In_Long, double In_Energy);
 	~Fulmine();
-	void SetBolt(double &,double &,double &,double &);
-	double GetTempo();
+	//void SetBolt(double &,double &,double &,double &);
+	double GetMaxRange();
 	double GetLat();
 	double GetLong();
 	double GetEnergy();
