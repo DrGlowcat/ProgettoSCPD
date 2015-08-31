@@ -17,6 +17,7 @@ private:
 	double comp_z;
 public:
 	Vector3D();
+	Vector3D(double x, double y, double z);
 	~Vector3D();
 	double GetX();
 	double GetY();

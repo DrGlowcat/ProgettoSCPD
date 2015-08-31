@@ -12,6 +12,13 @@ Vector3D::Vector3D()
 
 }
 
+Vector3D::Vector3D(double x, double y, double z)
+{
+	comp_x=x;
+	comp_y=y;
+	comp_z=z;
+}
+
 Vector3D::~Vector3D()
 {
 
@@ -32,17 +39,17 @@ double Vector3D::GetZ()
 	return comp_z;
 }
 
-void SetX(double xx)
+void Vector3D::SetX(double xx)
 {
 	comp_x = xx;
 }
 
-void SetY(double yy)
+void Vector3D::SetY(double yy)
 {
 	comp_y = yy;
 }
 
-void SetZ(double zz)
+void Vector3D::SetZ(double zz)
 {
 	comp_z = zz;
 }
@@ -104,7 +111,7 @@ double Vector3D::Angle(Vector3D *v)
 }
 
 //imposta la norma di un vettore al valore del double fornito
-void SetMag(double n)
+void Vector3D::SetMag(double n)
 {
 	double factor = Norma();
 	if(factor != 0)
