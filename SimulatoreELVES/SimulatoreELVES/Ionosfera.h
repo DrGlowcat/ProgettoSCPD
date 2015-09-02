@@ -11,12 +11,13 @@ class Ionosfera
 private :
 	int Resolution;
 	double CurveRad;
-	double CenterX;
-	double CenterY;
-	double CenterZ;
-	double DeltaX;
-	double DeltaY;
-	double DeltaZ;
+	/*l'ho pensata così: si prende un centro (che non è dove sono i rilevatori
+	ma proprio il centro della zona visibile (se non ricordo male il grafico
+	basta che dividi per due le coordinate e dovresti avere latitudine)*/
+	double CenterLat;
+	double CenterLong;
+	double VertAngle;
+	double HoriAngle;
 	map<int, IonPixel> Matrix;
 	map<int, Rilevatore> GroundRel;
 public:
