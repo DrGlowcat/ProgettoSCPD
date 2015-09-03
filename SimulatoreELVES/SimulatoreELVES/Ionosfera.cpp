@@ -1,24 +1,24 @@
-/*Classe contenitore che ha responsabilit‡ sulla gestione della matrice di pixel atmosferici
-fra le cose che puÚ fare c'Ë la definizione della dimensione della matrice, e la sua successiva
+/*Classe contenitore che ha responsabilit√† sulla gestione della matrice di pixel atmosferici
+fra le cose che pu√≤ fare c'√® la definizione della dimensione della matrice, e la sua successiva
 inizializzazione.
 DA DECIDERE: il calcolo della funzione sui pixel potrebbe essere lanciato da qui, ma devo controllare
 se ci sono problemi in fase di parallelizzazione.*/
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Ionosfera.h"
 
 
 Ionosfera::Ionosfera()
 {
 	//sostituire con due angoli e due soglie limite.
-	Resolution = 0;
+	RowResolution = 0;
+	ColResolution = 0;
+	TotResolution = 0;
 	CurveRad = 0.0;
-	CenterX = 0.0;
-	CenterY = 0.0;
-	CenterZ = 0.0;
-	DeltaX = 0.0;
-	DeltaY = 0.0;
-	DeltaZ = 0.0;
+	CenterLat = 0.0;
+	CenterLong = 0.0;
+	DeltaLat = 0.0;
+	DeltaLong = 0.0;
 	if (!Matrix.empty())
 	{
 		map<int, IonPixel> EmptyMatrix;
@@ -26,16 +26,16 @@ Ionosfera::Ionosfera()
 	}
 }
 
-Ionosfera::Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_CenterZ, double In_DeltaX, double In_DeltaY, double In_DeltaZ, map<int, Rilevatore> In_GroundRel)
+Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, int In_TResolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_DeltaX, double In_DeltaY, map<int, Rilevatore> In_GroundRel)
 {
-	Resolution = In_Resolution;
+	RowResolution = In_RResolution;
+	ColResolution = In_CResolution;
+	TotResolution = In_TResolution;
 	CurveRad = In_CurveRad;
-	CenterX = In_CenterX;
-	CenterY = In_CenterY;
-	CenterZ = In_CenterZ;
-	DeltaX = In_DeltaX;
-	DeltaY = In_DeltaY;
-	DeltaZ = In_DeltaZ;
+	CenterLat = In_CenterX;
+	CenterLong = In_CenterY;
+	DeltaLat = In_DeltaX;
+	DeltaLong = In_DeltaY;
 	GroundRel = In_GroundRel;// ora vedo i rilevatori
 	if (!Matrix.empty())
 	{
@@ -44,20 +44,25 @@ Ionosfera::Ionosfera(int In_Resolution, double In_CurveRad, double In_CenterX, d
 	}
 	else
 	{
-		double pixX=0.0;
-		double pixY=0.0;
-		double pixZ=0.0;
-		//
-		for (int i = 0; i < Resolution; i++)
+		int pix_long = deltaLong/RowResolution; //ampiezza in long del pixel
+		int pix_lat = deltaLat/ColResolution;
+		double pixX=0.5*pix_long;  //coord riferite al centro del pixel
+		double pixY=0.5*pix_lat;
+		for (int i = 0; i < RowResolution; i++)
 		{
-			// definire come calcolare la posizione del particolare pixel
-			pixX = 21.12;
-			pixY = 21.12;
-			pixZ = 21.12;
-			//Matrix.insert(std::pair<int, IonPixel> (i,IonPixel()));
-			Matrix[i] = IonPixel(pixX, pixY, pixZ,GroundRel);
-			/*NOTA: per ora ogni pixel Ë vuoto devo implementare il 
+			for(int j=0; j<ColResolution; j++)
+			{
+				// definire come calcolare la posizione del particolare pixel
+/*ho semplicemente suddiviso la ionosfera in celle in base a latitudine e longitudine,
+ * per sapere in quale punto del cielo si verifica l'evento.
+*/
+				pixX += pix_long;
+				pixY += pix_lat;
+				//Matrix.insert(std::pair<int, IonPixel> (i,IonPixel()));
+				Matrix[i] = IonPixel(pixX, pixY,GroundRel);
+				/*NOTA: per ora ogni pixel √® vuoto devo implementare il
 			costruttore idoneo per i pixel prima di poter proseguire*/
+			}
 		}
 	}
 }
@@ -71,48 +76,46 @@ Ionosfera::~Ionosfera()
 void Ionosfera::CalcImpulso(Fulmine In_Fulmine)
 {
 	/*qui si calcola, per ogni IonPixel, il valore dell'impulso in base al fulmine
-	corrente. Il calcolo di tale funzione Ë indipendente per ogni pixel e puÚ essere
+	corrente. Il calcolo di tale funzione √® indipendente per ogni pixel e pu√≤ essere
 	parallelizzato.*/
 }
 
 void Ionosfera::SetRelPixel(Rilevatore In_Rilevatore)
 {
 	/*Qui si va ad associare un insieme di pixel dei rilevatore a un singolo IonPixel
-	anche questa operazione puÚ essere parallelizzata, dato che si accede ai 
+	anche questa operazione pu√≤ essere parallelizzata, dato che si accede ai
 	rilevatori solo in lettura e non si modificano mail.*/
 }
 
-int Ionosfera::GetResolution()
+int Ionosfera::GetRowResolution()
 {
-	return Resolution;
+	return RowResolution;
 }
 
-double Ionosfera::GetCenterX()
+int Ionosfera::GetColResolution()
 {
-	return CenterX;
+	return ColResolution;
+}
+int Ionosfera::GetTotResolution()
+{
+	return RowResolution*ColResolution;
+}
+double Ionosfera::GetCenterLat()
+{
+	return CenterLat;
 }
 
-double Ionosfera::GetCenterY()
+double Ionosfera::GetCenterLong()
 {
-	return CenterY;
+	return CenterLong;
 }
 
-double Ionosfera::GetCenterZ()
+double Ionosfera::GetDeltaLat()
 {
-	return CenterZ;
+	return DeltaLat;
 }
 
-double Ionosfera::GetDeltaX()
+double Ionosfera::GetDeltaLong()
 {
-	return DeltaX;
-}
-
-double Ionosfera::GetDeltaY()
-{
-	return DeltaY;
-}
-
-double Ionosfera::GetDeltaZ()
-{
-	return DeltaZ;
+	return DeltaLong;
 }
