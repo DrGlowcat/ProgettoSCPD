@@ -44,8 +44,8 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, int In_TResolution,
 	}
 	else
 	{
-		int pix_long = deltaLong/RowResolution; //ampiezza in long del pixel
-		int pix_lat = deltaLat/ColResolution;
+		int pix_long = DeltaLong/RowResolution; //ampiezza in long del pixel
+		int pix_lat = DeltaLat/ColResolution;
 		double pixX=0.5*pix_long;  //coord riferite al centro del pixel
 		double pixY=0.5*pix_lat;
 		for (int i = 0; i < RowResolution; i++)

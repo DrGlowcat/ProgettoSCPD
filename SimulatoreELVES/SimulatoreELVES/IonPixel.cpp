@@ -11,17 +11,15 @@ IonPixel::IonPixel()
 {
 	PosX = 0;
 	PosY = 0;
-	PosZ = 0;
 	Density = 0;
 	Status = 0;
 	//inserire tempo dell'evento
 }
 
-IonPixel::IonPixel(double In_PosX, double In_PosY, double In_PosZ, map<int, Rilevatore> In_GroundRel)
+IonPixel::IonPixel(double In_PosX, double In_PosY, map<int, Rilevatore> In_GroundRel)
 {
 	PosX = In_PosX;
 	PosY = In_PosY;
-	PosZ = In_PosZ;
 	Density = 0;
 	Status = 0;
 	/*NOTA, useremo il SetInVista per riempire la matrice InVista
@@ -43,7 +41,7 @@ passare anche più di un rilevatore (in caso siano presenti)*/
 	int counter = 0;
 	for (auto i : In_GroundRel)
 	{
-		auto risultati = i.second.Rel2Ion(PosX, PosY, PosZ);
+		auto risultati = i.second.Rel2Ion(PosX, PosY);
 		for (auto j : risultati)
 		{
 			/*questi cicli sono necessari per evitare che RelPixel
@@ -58,7 +56,7 @@ passare anche più di un rilevatore (in caso siano presenti)*/
 
 void IonPixel::CalcolaImpulso(Fulmine InFulmine)
 {
-	Status = (PosX*Density) + (PosY*Density) + (PosZ*Density);
+	Status = (PosX*Density) + (PosY*Density);
 	cout << "calcolata la funzione" << endl;
 }
 
@@ -75,11 +73,6 @@ double IonPixel::GetX()
 double IonPixel::GetY()
 {
 	return PosY;
-}
-
-double IonPixel::GetZ()
-{
-	return PosZ;
 }
 
 double IonPixel::GetDensity()
