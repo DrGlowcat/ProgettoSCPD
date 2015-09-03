@@ -27,7 +27,8 @@ per la prima che è più semplice e meno caotica.*/
 double const CONST_spdoflight { 0.3 };  //in km/microsec
 double const CONST_pi { 3.14159265359 };
 double const CONST_degree { CONST_pi / 180 };  //conversione gradi-radianti
-double const CONST_r_earth { 6371 };  //raggio terrestre in km
+double const CONST_R_earth { 6371 };  //raggio terrestre in km
+double const CONST_HD { 9000 };   //altezza dello strato di emissione
 /**/
 
 double const augerCentre[2] = {-35.25, -69.25};
@@ -42,9 +43,4 @@ double const latsites[4] = {-35.495759,-35.291974,-34.935916,-35.114138};  //lat
 //per i vettori: 0=LosLeones, 1=LosMorados, 2=LomaAmarilla, 3=Coihueco
 double const backwall[4] = {-30.00,60.03,-171.85,-116.68};  //orientamento della zona cieca di ciascun telesc, in gradi rispetto all'est
 //FoV della camera: 30° in azimuth in 20 colonne, 28.1° in elevation in 22 righe
-//Vector3D PoloNord = (0.,0.,1.);
-/*MANCA IL COSTRUTTORE!!! una classe non è come una struct
-e dato che i parametri di Vector3D sono privati non puoi scriverci
-direttamente da qui. Ti ho implementato il costruttore
----> vedi Vector3D per le modifiche.*/
 Vector3D PoloNord = Vector3D(0., 0., 1.);
