@@ -80,7 +80,22 @@ Vector3D Vector3D::Cross(Vector3D *v1)
 	Vector3D vett(comp_y*v1->GetZ()-v1->GetY()*comp_z, comp_z*v1->GetX()-v1->GetZ()*comp_x, comp_x*v1->GetY()-v1->GetX()*comp_y);
 	return vett;
 }
-
+//imposta angolo polare
+void Vector3D::SetTheta(double th)
+{
+	double mag = Norma();
+	double ph = GetPhi();
+	SetX(mag*sin(th)*cos(th));
+	SetY(mag*sin(th)*sin(ph));
+	SetZ(mag*cos(th));
+}
+//imposta angolo azimutale
+void Vector3D::SetPhi(double ph)
+{
+	double xy = sqrt(comp_x*comp_x + comp_y*comp_y);
+	SetX(xy*cos(ph));
+	SetY(xy*sin(ph));
+}
 //restituisce angolo polare
 double Vector3D::GetTheta()
 {
@@ -122,4 +137,3 @@ void Vector3D::SetMag(double n)
 		SetZ(comp_z*factor);
 	}
 }
-
