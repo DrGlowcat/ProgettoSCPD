@@ -3,8 +3,8 @@ class RelPixel
 {
 private:
 	double Orientation;
-	double VertAngle;
-	double HoriAngle;
+	double pixel_elev;
+	double pixel_azimut;
 	double Status;
 public:
 	RelPixel();
@@ -13,7 +13,11 @@ public:
 	double GetStatus();
 	void SetStatus(double In_Status);
 	double GetOrientation();
-	double GetVertAngle();
-	double GetHoriAngle();
+	void RelPixel::SetPixElev(double theta);
+	void RelPixel::SetPixAzimut(double phi);
+	double RelPixel::GetPixElev();
+	double RelPixel::GetPixAzimut();
 };
+
+
 
