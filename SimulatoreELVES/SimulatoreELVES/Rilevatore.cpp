@@ -6,6 +6,7 @@ potenzialmente, possa sommare i vari contributi.*/
 #include "Rilevatore.h"
 #include "RelPixel.h"
 #include "Ionosfera.h"
+#include "Tools.h"
 
 
 Rilevatore::Rilevatore()
@@ -31,7 +32,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e, int res)
 	LongSite = Long*CONST_degree;
 	right_end = r_e; //r_e si prende dal vettore backwall, che si trova in Tools.h
 	left_end = r_e + CONST_pi;
-	//Orientation = r_e + 0.5*CONST_pi;
+	Orientation = r_e + 0.5*CONST_pi; //meglio questa a occhio
 	//Orientation = GetOrientation();  non so quale dei due è meglio
 	Status = 0;
 	Resolution = res;
@@ -56,11 +57,20 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e, int res)
 			{
 				//larghezza del pixel=1.5°=45.6mm, altezza=0.866°=26.33mm
 				//le coordinate si riferiscono al centro del pixel
+				
+				//l'orientamento del pixel è 0 in quanto pari a quella del rilevatore?
+
 				pixX += i*45.6;
 				pixY += j*26.33;
+				/*
 				RelPixel.SetPixElev(28.1*CONST_degree-j*pixel_theta);
 				RelPixel.SetPixAzimut(right_end*CONST_degree+i*pixel_phi);
 				Matrice_Osservazione[i] = RelPixel(pixX, pixY);
+				*/
+				// te lo segna come errore perchè devi riferirti ad un oggetto:
+				double PixElev = 28.1*CONST_degree - j*pixel_theta;
+				double PixAzim = right_end*CONST_degree + i*pixel_phi;
+				RelPixel New_pixel = RelPixel(pixX, pixY, PixOrientation,PixElev,PixAzim);
 			}
 		}
 	}
@@ -74,7 +84,7 @@ Rilevatore::~Rilevatore()
 	delete this;
 }
 
-map<int, RelPixel> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
+map<int, RelPixel> Rilevatore::Rel2Ion(double TotRes, double pix_lat, double pix_long)
 {
 	/*questa funzione è pensata per assegnare un certo pixel del rilevatore
 	a un pixel della ionosfera. Il dato che ritorna dovrebbe essere un puntatore
@@ -90,8 +100,8 @@ map<int, RelPixel> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 	RelpixLocation.SetTheta(relpix_elev);
 	RelpixLocation.SetPhi(relpix_azimut);
 	double *ionptr;
-	int res = Ionosfera.GetTotResolution();
-		for(int k=0, k<res, k++)
+	int res = TotRes;
+	for (int k = 0; k < res; k++)
 		{
 			//calcola distanza del piede della verticale dell'ionpixel
 			pix_lat *= CONST_degree;
@@ -106,15 +116,16 @@ map<int, RelPixel> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             IonLocation.SetMag(1.);
             IonLocation.SetPhi(pix_long);
             IonLocation.SetTheta(0.5*CONST_pi-pix_lat);
-            Vector3D Est = PoloNord.Cross(RelpixLocation);
+			// se il metodo richiede un puntatore devi passargli un riferimento
+            Vector3D Est = PoloNord.Cross(&RelpixLocation);
             Est.SetMag(1.);
-            Vector3D Avector = RelpixLocation.Cross(IonLocation);
+            Vector3D Avector = RelpixLocation.Cross(&IonLocation);
             Avector.SetMag(1.);
-            Vector3D Bvector = Avector.Cross(RelpixLocation);
+            Vector3D Bvector = Avector.Cross(&RelpixLocation);
             Bvector.SetMag(1.);
-            Vector3D Vertic = Bvector.Cross(Est);
-            double ion_azimut = Bvector.Angle(Est)/CONST_degree;
-            if(Vertic.Dot(RelpixLocation)>0.) ion_azimut = -ion_azimut;
+            Vector3D Vertic = Bvector.Cross(&Est);
+            double ion_azimut = Bvector.Angle(&Est)/CONST_degree;
+            if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
             //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
             if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + pixel_phi)
             {

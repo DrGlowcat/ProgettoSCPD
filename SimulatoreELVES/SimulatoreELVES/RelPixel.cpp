@@ -15,12 +15,14 @@ RelPixel::RelPixel(void)
 	Status = 0;
 }
 
-RelPixel::RelPixel(double X, double Y, double Z)
+RelPixel::RelPixel(double X, double Y, double Orient, double Elev, double Azim)
 {
 	//Costruttore di inizializzazione
-	Orientation = X;
-	pixel_elev = Y;
-	pixel_azimut = Z;
+	pos_X = X;
+	pos_X = Y;
+	Orientation = Orient;
+	pixel_elev = Elev;
+	pixel_azimut = Azim;
 	Status = 0;
 }
 

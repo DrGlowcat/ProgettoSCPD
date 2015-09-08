@@ -59,7 +59,7 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, int In_TResolution,
 				pixX += pix_long;
 				pixY += pix_lat;
 				//Matrix.insert(std::pair<int, IonPixel> (i,IonPixel()));
-				Matrix[i] = IonPixel(pixX, pixY,GroundRel);
+				Matrix[i] = IonPixel(TotResolution, pixX, pixY, GroundRel);
 				/*NOTA: per ora ogni pixel è vuoto devo implementare il
 			costruttore idoneo per i pixel prima di poter proseguire*/
 			}

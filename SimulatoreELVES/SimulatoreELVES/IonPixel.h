@@ -2,6 +2,7 @@
 #include "Fulmine.h"
 #include "RelPixel.h"
 #include"Rilevatore.h"
+#include "Ionosfera.h"
 #include <map>
 using namespace std;
 class IonPixel
@@ -14,9 +15,9 @@ private:
 	double Status;
 public:
 	IonPixel();
-	IonPixel(double In_PosX, double In_PosY, map<int, Rilevatore> In_GroundRel);
+	IonPixel(double TotRes, double In_PosX, double In_PosY, map<int, Rilevatore> In_GroundRel);
 	~IonPixel();
-	void SetInVista(map<int, Rilevatore> In_GroundRel);
+	void SetInVista(double TotRes, map<int, Rilevatore> In_GroundRel);
 	void CalcolaImpulso(Fulmine in_Fulmine);
 	double GetStatus();
 	double GetX();
