@@ -28,12 +28,12 @@ public:
 	~Ionosfera();
 	void CalcImpulso(Fulmine In_Fulmine);
 	void SetRelPixel(Rilevatore In_Rilevatore);
-	int Ionosfera::GetRowResolution();
-	int Ionosfera::GetColResolution();
-	int Ionosfera::GetTotResolution();
-	double Ionosfera::GetCenterLat();
-	double Ionosfera::GetCenterLong();
-	double Ionosfera::GetDeltaLat();
-	double Ionosfera::GetDeltaLong();
+	int GetRowResolution();
+	int GetColResolution();
+	int GetTotResolution();
+	double GetCenterLat();
+	double GetCenterLong();
+	double GetDeltaLat();
+	double GetDeltaLong();
 };
 
