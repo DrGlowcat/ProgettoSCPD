@@ -127,6 +127,8 @@ map<int, RelPixel> Rilevatore::Rel2Ion(double TotRes, double pix_lat, double pix
             double ion_azimut = Bvector.Angle(&Est)/CONST_degree;
             if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
             //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
+
+			//!! da dove saltano fuori queste variabili? (forse sono costanti?)
             if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + pixel_phi)
             {
             	if(ion_elev > relpix_elev - pixel_theta && ion_elev < relpix_elev)
