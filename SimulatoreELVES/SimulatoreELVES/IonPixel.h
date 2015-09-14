@@ -15,9 +15,9 @@ private:
 	double Status;
 public:
 	IonPixel();
-	IonPixel(double TotRes, double In_PosX, double In_PosY, map<int, Rilevatore> In_GroundRel);
+	IonPixel(int TotRes, double In_PosX, double In_PosY, map<int, Rilevatore> In_GroundRel);
 	~IonPixel();
-	void SetInVista(double TotRes, map<int, Rilevatore> In_GroundRel);
+	void SetInVista(int TotRes, map<int, Rilevatore> In_GroundRel);
 	void CalcolaImpulso(Fulmine in_Fulmine);
 	double GetStatus();
 	double GetX();

@@ -24,7 +24,7 @@ public:
 	Rilevatore();
 	Rilevatore(double Lat, double Long, double r_e, int res);
 	~Rilevatore();
-	map<int, RelPixel> Rel2Ion(double TotRes, double pix_lat, double pix_long);
+	map<int, RelPixel> Rel2Ion(int TotRes, double pix_lat, double pix_long);
 	bool GetStatus();
 	double GetOrientation();
 	/*double GetX();

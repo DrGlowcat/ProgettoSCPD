@@ -16,7 +16,7 @@ IonPixel::IonPixel()
 	//inserire tempo dell'evento
 }
 
-IonPixel::IonPixel(double TotRes, double In_PosX, double In_PosY, map<int, Rilevatore> In_GroundRel)
+IonPixel::IonPixel(int TotRes, double In_PosX, double In_PosY, map<int, Rilevatore> In_GroundRel)
 {
 	PosX = In_PosX;
 	PosY = In_PosY;
@@ -32,7 +32,7 @@ IonPixel::~IonPixel()
 	delete this;
 }
 
-void IonPixel::SetInVista(double TotRes, map<int, Rilevatore> In_GroundRel)
+void IonPixel::SetInVista(int TotRes, map<int, Rilevatore> In_GroundRel)
 {
 	/*va a settare la mappa dei pixel in vista calcolando Rel2Ion e aggiungendo
 	a InVista i risultati.*/

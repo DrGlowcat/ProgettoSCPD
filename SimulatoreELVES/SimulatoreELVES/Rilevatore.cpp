@@ -2,7 +2,7 @@
 ovvero il numero di pixel del rilevatore stesso. Diversamente dalla classe Ionosfera possiamo avere più oggetti di tipo Rilevatore presenti
 contemporaneamente nel sistema. Ogni pixel del rilevatore è associato a uno o più IonPixel, va quindi implementata una funzione che,
 potenzialmente, possa sommare i vari contributi.*/
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Rilevatore.h"
 #include "RelPixel.h"
 #include "Ionosfera.h"
@@ -84,7 +84,7 @@ Rilevatore::~Rilevatore()
 	delete this;
 }
 
-map<int, RelPixel> Rilevatore::Rel2Ion(double TotRes, double pix_lat, double pix_long)
+map<int, RelPixel> Rilevatore::Rel2Ion(int TotRes, double pix_lat, double pix_long)
 {
 	/*questa funzione è pensata per assegnare un certo pixel del rilevatore
 	a un pixel della ionosfera. Il dato che ritorna dovrebbe essere un puntatore

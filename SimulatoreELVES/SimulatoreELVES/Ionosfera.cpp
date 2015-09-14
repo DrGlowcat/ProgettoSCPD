@@ -4,8 +4,9 @@ inizializzazione.
 DA DECIDERE: il calcolo della funzione sui pixel potrebbe essere lanciato da qui, ma devo controllare
 se ci sono problemi in fase di parallelizzazione.*/
 
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Ionosfera.h"
+using namespace std;
 
 
 Ionosfera::Ionosfera()
@@ -44,8 +45,8 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, int In_TResolution,
 	}
 	else
 	{
-		int pix_long = DeltaLong/RowResolution; //ampiezza in long del pixel
-		int pix_lat = DeltaLat/ColResolution;
+		double pix_long = DeltaLong/RowResolution; //ampiezza in long del pixel
+		double pix_lat = DeltaLat/ColResolution;
 		double pixX=0.5*pix_long;  //coord riferite al centro del pixel
 		double pixY=0.5*pix_lat;
 		for (int i = 0; i < RowResolution; i++)

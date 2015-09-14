@@ -4,6 +4,7 @@
  *  Created on: 26 Aug 2015
  *      Author: grumpycat
  */
+#include "stdafx.h"
 #include "Vector3D.h"
 #include "Tools.h"
 
