@@ -18,13 +18,14 @@ private:
 	double right_end;  //limite destro del fov, in radianti
 	double left_end;  //limite sinistro del fov, in radianti
 	bool Status; //indica se acceso o spento.
-	int Resolution;
+	int ResolutionX;
+	int ResolutionY;
 	map<int, RelPixel> Matrice_Osservazione;
 public:
 	Rilevatore();
-	Rilevatore(double Lat, double Long, double r_e, int res);
+	Rilevatore(double Lat, double Long, double r_e, int resX, int resY);
 	~Rilevatore();
-	map<int, RelPixel> Rel2Ion(int TotRes, double pix_lat, double pix_long);
+	map<int, RelPixel> Rel2Ion(double pix_lat, double pix_long);
 	bool GetStatus();
 	double GetOrientation();
 	/*double GetX();
