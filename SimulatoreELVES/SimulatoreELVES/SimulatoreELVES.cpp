@@ -38,7 +38,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	*/
 
 	/*Da qui inizia la fase di computazione e calcolo della simulazione
-	DA DEFINIRE
+
+	for each(Bolt in DBFulmine)
+		{
+		throw Bolt to Ionosfera
+		forall (Ionpixel in Ionosfera)
+			{
+			propagate Bolt
+			for each (RelPixel in InVista)
+				{
+				Enlight RelPixel
+				}
+			}
+		forall (Rilevatore in DBRilevatori)
+			{
+			Rilevatore.CollectImage()
+			}
+		}
 	*/
 	return 0;
 }
