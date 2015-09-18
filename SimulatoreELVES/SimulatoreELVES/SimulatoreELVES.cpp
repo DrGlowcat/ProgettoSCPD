@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <fstream>
 #include "Fulmine.h"
 using namespace std;
 
@@ -20,6 +21,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	cosa succede. Questa operazione è indipendente dalle altre, e se vogliamo possiamo
 	eseguirla in modo parallelo ad altre attività.
 	*/
+	ifstream ThunderFile ("DBFulmini.txt",ios::in|ios::ate); //da modificare in caso non si chiami così
+	if (ThunderFile.is_open())
+	{
+		streampos size = ThunderFile.tellg();
+		char* ThunderString = new char[size];
+		ThunderFile.seekg(0, ios::beg);
+		ThunderFile.read(ThunderString, size);
+		ThunderFile.close();
+		//ora va parsificato per tirare fuori i singoli fulmini e metterli in una struttura appropriata.
+	}
+	else
+	{
+		cout << "File ERROR: Unable to open";
+		return 1;
+	}
 
 	/*Inizializzazione dei rilevatori:
 	Anche qui utilizziamo un file contenente i valori di posizione e orientamento dei 
