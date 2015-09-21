@@ -7,6 +7,7 @@
 #include "Fulmine.h"
 #include "Tools.h"
 #include "Rilevatore.h"
+#include "Ionosfera.h"
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -45,6 +46,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		Rilevatori[1] = Rilevatore(latsites[i], longsites[i], backwall[i], RelXRes, RelYRes);
 	}
+
+	//inizializzazione ionosfera (NOTA: non sono sicuro che siano i parametri giusti)
+	Ionosfera ActualIonosphere = Ionosfera(IonXRes,IonYRes,CONST_R_earth,augerCentre[0],augerCentre[1],deltaLong,deltaLat,Rilevatori);
 
 	/*Da qui inizia la fase di computazione e calcolo della simulazione
 	NOTA: Pseudocodice

@@ -27,11 +27,11 @@ Ionosfera::Ionosfera()
 	}
 }
 
-Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, int In_TResolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_DeltaX, double In_DeltaY, map<int, Rilevatore> In_GroundRel)
+Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_DeltaX, double In_DeltaY, map<int, Rilevatore> In_GroundRel)
 {
 	RowResolution = In_RResolution;
 	ColResolution = In_CResolution;
-	TotResolution = In_TResolution;
+	TotResolution = RowResolution*ColResolution; // davvero serve?
 	CurveRad = In_CurveRad;
 	CenterLat = In_CenterX;
 	CenterLong = In_CenterY;
