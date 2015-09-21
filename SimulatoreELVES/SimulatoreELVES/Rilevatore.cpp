@@ -73,6 +73,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e, int resX, int resY)
 				double PixElev = 28.1*CONST_degree - j*pixel_theta;
 				double PixAzim = right_end*CONST_degree + i*pixel_phi;
 				RelPixel New_pixel = RelPixel(pixX, pixY, PixOrientation,PixElev,PixAzim);
+				Matrice_Osservazione[i] = New_pixel;
 			}
 		}
 	}

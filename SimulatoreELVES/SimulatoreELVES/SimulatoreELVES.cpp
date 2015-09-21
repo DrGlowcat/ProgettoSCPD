@@ -38,7 +38,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	
 	/*Da qui inizia la fase di computazione e calcolo della simulazione
-
+	NOTA: Pseudocodice
 	for each(Bolt in DBFulmine)
 		{
 		throw Bolt to Ionosfera
