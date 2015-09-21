@@ -81,13 +81,6 @@ void Ionosfera::CalcImpulso(Fulmine In_Fulmine)
 	parallelizzato.*/
 }
 
-void Ionosfera::SetRelPixel(Rilevatore In_Rilevatore)
-{
-	/*Qui si va ad associare un insieme di pixel dei rilevatore a un singolo IonPixel
-	anche questa operazione può essere parallelizzata, dato che si accede ai
-	rilevatori solo in lettura e non si modificano mail.*/
-}
-
 int Ionosfera::GetRowResolution()
 {
 	return RowResolution;
