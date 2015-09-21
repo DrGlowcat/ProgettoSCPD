@@ -38,9 +38,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "File ERROR: Unable to open";
 		return 1;
 	}
-	
-	map<int, Rilevatore> Rilevatori;
 
+	//iniziaizzazioni dei rilevatori.
+	map<int, Rilevatore> Rilevatori;
 	for (int i = 0; i < 4; i++)
 	{
 		Rilevatori[1] = Rilevatore(latsites[i], longsites[i], backwall[i], RelXRes, RelYRes);
