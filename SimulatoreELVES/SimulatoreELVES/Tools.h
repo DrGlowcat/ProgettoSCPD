@@ -43,4 +43,6 @@ double const latsites[4] = {-35.495759,-35.291974,-34.935916,-35.114138};  //lat
 //per i vettori: 0=LosLeones, 1=LosMorados, 2=LomaAmarilla, 3=Coihueco
 double const backwall[4] = {-30.00,60.03,-171.85,-116.68};  //orientamento della zona cieca di ciascun telesc, in gradi rispetto all'est
 //FoV della camera: 30° in azimuth in 20 colonne, 28.1° in elevation in 22 righe
+int const RelXRes = 20;
+int const RelYRes = 22;
 Vector3D PoloNord = Vector3D(0., 0., 1.);

@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include "Fulmine.h"
+#include "Tools.h"
+#include "Rilevatore.h"
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -37,6 +39,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		return 1;
 	}
 	
+	map<int, Rilevatore> Rilevatori;
+
+	for (int i = 0; i < 4; i++)
+	{
+		Rilevatori[1] = Rilevatore(latsites[i], longsites[i], backwall[i], RelXRes, RelYRes);
+	}
+
 	/*Da qui inizia la fase di computazione e calcolo della simulazione
 	NOTA: Pseudocodice
 	for each(Bolt in DBFulmine)
