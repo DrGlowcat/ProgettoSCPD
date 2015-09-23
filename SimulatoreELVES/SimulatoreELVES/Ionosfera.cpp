@@ -79,6 +79,16 @@ void Ionosfera::CalcImpulso(Fulmine In_Fulmine)
 	/*qui si calcola, per ogni IonPixel, il valore dell'impulso in base al fulmine
 	corrente. Il calcolo di tale funzione è indipendente per ogni pixel e può essere
 	parallelizzato.*/
+	/*
+	forall (Ionpixel in Ionosfera)
+			{
+			propagate Bolt
+			for each (RelPixel in InVista)
+				{
+				Enlight RelPixel
+				}
+			}
+	*/
 }
 
 int Ionosfera::GetRowResolution()

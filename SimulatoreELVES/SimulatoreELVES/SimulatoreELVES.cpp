@@ -54,15 +54,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	NOTA: Pseudocodice
 	for each(Bolt in DBFulmine)
 		{
-		throw Bolt to Ionosfera
-		forall (Ionpixel in Ionosfera)
-			{
-			propagate Bolt
-			for each (RelPixel in InVista)
-				{
-				Enlight RelPixel
-				}
-			}
+		Ionosfera.CalcImpulso(Bolt)
 		forall (Rilevatore in DBRilevatori)
 			{
 			Rilevatore.CollectImage()
