@@ -16,4 +16,5 @@ public:
 	double GetLat();
 	double GetLong();
 	double GetEnergy();
+	double BoltPropagation(double t);
 };
