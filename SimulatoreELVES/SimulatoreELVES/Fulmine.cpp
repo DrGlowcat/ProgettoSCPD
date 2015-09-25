@@ -59,3 +59,12 @@ double Fulmine::GetEnergy()
 {
 	return Energy;
 }
+
+double BoltPropagation(double t)
+{
+//semplice sfera che si espande nel tempo, rappresenta il fronte d'onda del fulmine.
+//t è il tempo trascorso dalla caduta del fulmine
+	double raggio = 0.;
+	raggio = CONST_spdoflight * t;
+	return raggio;
+}
