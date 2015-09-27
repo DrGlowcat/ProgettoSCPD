@@ -4,6 +4,7 @@ e deve essere garantita l'accessibilità (in lettura) in parallelo. Ovviamente l
 che il fulmine è stato dichiarato non dovrebbe essere più modificato.*/
 #include "stdafx.h"
 #include "Fulmine.h"
+#include "Tools.h"
 
 
 Fulmine::Fulmine()
@@ -67,4 +68,5 @@ double BoltPropagation(double t)
 	double raggio = 0.;
 	raggio = CONST_spdoflight * t;
 	return raggio;
+	// return CONST_spdoflight * t; //metodo condensato ;)
 }
