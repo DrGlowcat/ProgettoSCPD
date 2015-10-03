@@ -104,7 +104,6 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 	RelpixLocation.SetMag(1.);
 	RelpixLocation.SetTheta(relpix_elev);
 	RelpixLocation.SetPhi(relpix_azimut);
-	double *ionptr;
 	int res = GetResolution();
 	//for (int k = 0; k < res; k++)
 	for (auto k :Matrice_Osservazione)
@@ -141,9 +140,9 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
             //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
 
-            if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + pixel_phi)
+            if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + ActualRelPixel->pixel_phi)
             {
-            	if(ion_elev > relpix_elev - pixel_theta && ion_elev < relpix_elev)
+            	if(ion_elev > relpix_elev - ActualRelPixel->pixel_theta && ion_elev < relpix_elev)
             	{
 					/*
 					questo è il codice da usare per mettere il riferimento nella matrice
@@ -151,7 +150,6 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 					*/
 					SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
 					SeenMatrixIndex++;
-					//ionptr = &IonPixel; //non sono sicura di questa assegnazione
             	}
             }
 		}
