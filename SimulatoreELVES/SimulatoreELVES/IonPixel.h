@@ -11,7 +11,7 @@ private:
 	double PosX;
 	double PosY;
 	double Density;
-	map<int,RelPixel> InVista; //mappiamo i pixel in vista in modo dinamico.
+	map<int,RelPixel*> InVista; //mappiamo i pixel in vista in modo dinamico.
 	double Status;
 public:
 	IonPixel();

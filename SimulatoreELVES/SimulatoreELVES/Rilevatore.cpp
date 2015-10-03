@@ -87,8 +87,10 @@ Rilevatore::~Rilevatore()
 	delete this;
 }
 
-map<int, RelPixel> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
+map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 {
+	map<int, RelPixel*> SeenMatrix;
+	int SeenMatrixIndex = { 0 };
 	/*questa funzione è pensata per assegnare un certo pixel del rilevatore
 	a un pixel della ionosfera. Il dato che ritorna dovrebbe essere un puntatore
 	al pixel del rilevatore, in modo da rendere più facile la modifica da parte
@@ -104,8 +106,16 @@ map<int, RelPixel> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 	RelpixLocation.SetPhi(relpix_azimut);
 	double *ionptr;
 	int res = GetResolution();
-	for (int k = 0; k < res; k++)
+	//for (int k = 0; k < res; k++)
+	for (auto k :Matrice_Osservazione)
 		{
+			RelPixel * ActualRelPixel = &k.second;
+			/*
+			avevi ragione tu sui puntatori a classe, per usare i metodu di ActualRelPixel
+			devi usare l'operatore -> per fare un esempio ActualRelPixel->GetPixelElev()
+			Altra cosa, non è testato che funzioni, sembra solo che piaccia al compilatore
+			ergo incrocia le dita!!
+			*/
 			//calcola distanza del piede della verticale dell'ionpixel
 			pix_lat *= CONST_degree;
 			pix_long *= CONST_degree;
@@ -135,10 +145,17 @@ map<int, RelPixel> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             {
             	if(ion_elev > relpix_elev - pixel_theta && ion_elev < relpix_elev)
             	{
-            		ionptr = &IonPixel; //non sono sicura di questa assegnazione
+					/*
+					questo è il codice da usare per mettere il riferimento nella matrice
+					dato che ActualRelPixel è già un puntatore, non c'è bisogno della &
+					*/
+					SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
+					SeenMatrixIndex++;
+					//ionptr = &IonPixel; //non sono sicura di questa assegnazione
             	}
             }
 		}
+	return SeenMatrix;
 }
 bool Rilevatore::GetStatus()
 {
