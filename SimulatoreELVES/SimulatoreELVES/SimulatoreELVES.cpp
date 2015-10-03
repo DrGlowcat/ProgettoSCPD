@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Fulmine.h"
 #include "Tools.h"
 #include "Rilevatore.h"
@@ -24,15 +25,59 @@ int _tmain(int argc, _TCHAR* argv[])
 	cosa succede. Questa operazione è indipendente dalle altre, e se vogliamo possiamo
 	eseguirla in modo parallelo ad altre attività.
 	*/
-	ifstream ThunderFile ("DBFulmini.txt",ios::in|ios::ate); //da modificare in caso non si chiami così
+	map<int, Fulmine> DBfulmini;
+	//ATTENZIONE: file non presente ancora
+	ifstream ThunderFile ("AE_selection2013.txt",ios::in|ios::ate); //da modificare in caso non si chiami così
 	if (ThunderFile.is_open())
 	{
-		streampos size = ThunderFile.tellg();
-		char* ThunderString = new char[size];
-		ThunderFile.seekg(0, ios::beg);
-		ThunderFile.read(ThunderString, size);
-		ThunderFile.close();
-		//ora va parsificato per tirare fuori i singoli fulmini e metterli in una struttura appropriata.
+		int counter{ 1 };
+		int ThunCounter{ 0 };
+		double wwlln_lat, wwlln_long, wwlln_dt, wwlln_energy, wwlln_errEnergy;
+		int wwlln_nstat, wwlln_nstat2;
+		string mmddyy, hhmmss;
+		string MM, DD, YY;
+		string hh, mm, ss, usec;
+		while (!ThunderFile.eof())
+		{
+			ThunderFile >> 
+				mmddyy >> //data
+				hhmmss >> //ora
+				wwlln_lat >> //latitudine
+				wwlln_long >> //longitudine
+				wwlln_dt >> //durata (?)
+				wwlln_nstat >> //(?)
+				wwlln_energy >> //energia impulso
+				wwlln_errEnergy >> //errore relativo sull'energia (?)
+				wwlln_nstat2;//(?)
+			MM = mmddyy.substr(5,2);
+			DD = mmddyy.substr(8, 2);
+			YY = mmddyy.substr(0, 4);
+			hh= hhmmss.substr(0, 2);
+			mm = hhmmss.substr(3, 2);
+			ss = hhmmss.substr(6, 2); 
+			usec=hhmmss.substr(9, 6);
+			if (counter==10)
+			{
+				counter = 1;
+				//riempi una riga
+				Fulmine nuovoFul = Fulmine(
+					wwlln_lat, 
+					wwlln_long, 
+					wwlln_energy, 
+					stoi(MM), 
+					stoi(DD), 
+					stoi(YY), 
+					stoi(hh), 
+					stoi(mm), 
+					stoi(ss), 
+					stoi(usec));
+
+				DBfulmini[ThunCounter] = nuovoFul;
+				ThunCounter++;
+			}
+			else{ counter++; }
+		}
+
 	}
 	else
 	{

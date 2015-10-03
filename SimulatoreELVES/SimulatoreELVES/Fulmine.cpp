@@ -14,13 +14,23 @@ Fulmine::Fulmine()
 	Long = 0;
 	Energy = 0;
 	MaxRange = 0;
+	MM = 0;
+	DD = 0;
+	YY = 0;
 }
 
-Fulmine::Fulmine(double In_Lat, double In_Long, double In_Energy)
+Fulmine::Fulmine(double In_Lat, double In_Long, double In_Energy, int in_MM, int in_DD, int in_YY, int in_hh, int in_mm, int in_ss, int in_usec)
 {
 	Lat = In_Lat;
 	Long = In_Long;
 	Energy = In_Energy;
+	MM = in_MM;
+	DD = in_DD;
+	YY = in_YY;
+	hh = in_hh;
+	mm = in_mm;
+	ss = in_ss;
+	usec=in_usec;
 	MaxRange = Energy * 3; //Formula giocattolo
 }
 
