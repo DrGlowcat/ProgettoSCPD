@@ -70,7 +70,6 @@ int _tmain(int argc, _TCHAR* argv[])
 					stoi(mm), 
 					stoi(ss), 
 					stoi(usec));
-
 				DBfulmini[ThunCounter] = nuovoFul;
 				ThunCounter++;
 			}
@@ -83,17 +82,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "File ERROR: Unable to open";
 		return 1;
 	}
-
 	//iniziaizzazioni dei rilevatori.
 	map<int, Rilevatore> Rilevatori;
 	for (int i = 0; i < 4; i++)
 	{
 		Rilevatori[1] = Rilevatore(latsites[i], longsites[i], backwall[i], RelXRes, RelYRes);
 	}
-
 	//inizializzazione ionosfera (NOTA: non sono sicuro che siano i parametri giusti)
 	Ionosfera ActualIonosphere = Ionosfera(IonXRes,IonYRes,CONST_R_earth,augerCentre[0],augerCentre[1],deltaLong,deltaLat,Rilevatori);
-
 	/*Da qui inizia la fase di computazione e calcolo della simulazione
 	NOTA: Pseudocodice
 	for each(Bolt in DBFulmine)
