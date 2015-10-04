@@ -105,6 +105,7 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 	RelpixLocation.SetTheta(relpix_elev);
 	RelpixLocation.SetPhi(relpix_azimut);
 	int res = GetResolution();
+	Vector3D LocalNord = PoloNord;
 	//for (int k = 0; k < res; k++)
 	for (auto k :Matrice_Osservazione)
 		{
@@ -129,7 +130,7 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             IonLocation.SetPhi(pix_long);
             IonLocation.SetTheta(0.5*CONST_pi-pix_lat);
 			// se il metodo richiede un puntatore devi passargli un riferimento
-            Vector3D Est = PoloNord.Cross(&RelpixLocation);
+            Vector3D Est = LocalNord.Cross(&RelpixLocation);
             Est.SetMag(1.);
             Vector3D Avector = RelpixLocation.Cross(&IonLocation);
             Avector.SetMag(1.);

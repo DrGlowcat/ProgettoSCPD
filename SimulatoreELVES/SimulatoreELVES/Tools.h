@@ -32,12 +32,12 @@ double const CONST_HD { 9000 };   //altezza dello strato di emissione
 /**/
 
 double const augerCentre[2] = {-35.25, -69.25};
-double deltaLong = 20;
-double deltaLat = deltaLong*cos(augerCentre[0]*CONST_degree);
-double latMax = augerCentre[0]+10;
-double latMin = latMax-deltaLat;
-double longMin = augerCentre[1]-0.5*deltaLong;
-double longMax = augerCentre[1]+0.5*deltaLong;
+double const deltaLong = 20;
+double const deltaLat = deltaLong*cos(augerCentre[0] * CONST_degree);
+double const latMax = augerCentre[0] + 10;
+double const latMin = latMax - deltaLat;
+double const longMin = augerCentre[1] - 0.5*deltaLong;
+double const longMax = augerCentre[1] + 0.5*deltaLong;
 double const longsites[4] = {-69.449673,-69.012203,-69.210845,-69.499633};  //longitudini dei 4 telescopi
 double const latsites[4] = {-35.495759,-35.291974,-34.935916,-35.114138};  //latitudini dei telescopi
 //per i vettori: 0=LosLeones, 1=LosMorados, 2=LomaAmarilla, 3=Coihueco
@@ -47,4 +47,4 @@ int const RelXRes = 20;
 int const RelYRes = 22;
 int const IonXRes = 1920;
 int const IonYRes = 1080;
-Vector3D PoloNord = Vector3D(0., 0., 1.);
+Vector3D const PoloNord = Vector3D(0., 0., 1.);
