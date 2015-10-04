@@ -140,9 +140,9 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
             //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
 
-            if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + ActualRelPixel->pixel_phi)
+            if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + ActualRelPixel->GetPixAzimut())
             {
-            	if(ion_elev > relpix_elev - ActualRelPixel->pixel_theta && ion_elev < relpix_elev)
+            	if(ion_elev > relpix_elev - ActualRelPixel->GetPixElev() && ion_elev < relpix_elev)
             	{
 					/*
 					questo è il codice da usare per mettere il riferimento nella matrice
