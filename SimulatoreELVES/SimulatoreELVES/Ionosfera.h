@@ -13,7 +13,7 @@ private :
 	int ColResolution;
 	int TotResolution;
 	double CurveRad;
-	/*l'ho pensata così: si prende un centro (che non è dove sono i rilevatori
+	/*l'ho pensata cosÃ¬: si prende un centro (che non Ã¨ dove sono i rilevatori
 	ma proprio il centro della zona visibile (se non ricordo male il grafico
 	basta che dividi per due le coordinate e dovresti avere latitudine)*/
 	double CenterLat;
@@ -26,7 +26,6 @@ public:
 	Ionosfera();
 	Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_DeltaX, double In_DeltaY, map<int, Rilevatore> In_GroundRel);
 	~Ionosfera();
-	void CalcImpulso(Fulmine In_Fulmine);
 	int GetRowResolution();
 	int GetColResolution();
 	int GetTotResolution();
