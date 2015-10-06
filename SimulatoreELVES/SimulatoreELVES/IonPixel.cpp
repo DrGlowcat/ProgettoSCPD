@@ -1,6 +1,6 @@
 /*Pixel virtuale della ionosfera. Qesta classe contiene tutte le informazioni (lato ionosfera) per il calcolo della funzione
 F(.) per la definizione dell'impulso visibile dal rilevatore. Di sicuro avremo informazioni riguardanti la posizione del pixel, 
-inoltre è possibile aggiungere informazioni secondarie (densità, altezza ionosfera, ecc). Di fatto lo IonPixel è il dato "dataparallel"
+inoltre Ã¨ possibile aggiungere informazioni secondarie (densitÃ , altezza ionosfera, ecc). Di fatto lo IonPixel Ã¨ il dato "dataparallel"
 su cui si lavora.*/
 
 #include "stdafx.h"
@@ -23,7 +23,7 @@ IonPixel::IonPixel(double In_PosX, double In_PosY, map<int, Rilevatore> In_Groun
 	Density = 0;
 	Status = 0;
 	/*NOTA, useremo il SetInVista per riempire la matrice InVista
-	questo però ha senso farlo in un secondo momento.*/
+	questo perÃ² ha senso farlo in un secondo momento.*/
 	SetInVista(In_GroundRel);
 }
 
@@ -36,8 +36,8 @@ void IonPixel::SetInVista(map<int, Rilevatore> In_GroundRel)
 {
 	/*va a settare la mappa dei pixel in vista calcolando Rel2Ion e aggiungendo
 	a InVista i risultati.*/
-/*da decidere gli input: magari è comodo usare un puntatore in modo da potergli 
-passare anche più di un rilevatore (in caso siano presenti)*/
+/*da decidere gli input: magari Ã¨ comodo usare un puntatore in modo da potergli 
+passare anche piÃ¹ di un rilevatore (in caso siano presenti)*/
 	int counter = 0;
 	for (auto i : In_GroundRel)
 	{
@@ -58,6 +58,29 @@ void IonPixel::CalcolaImpulso(Fulmine InFulmine)
 {
 	Status = (PosX*Density) + (PosY*Density);
 	cout << "calcolata la funzione" << endl;
+		/*qui si calcola, per ogni IonPixel, il valore dell'impulso in base al fulmine
+	corrente. Il calcolo di tale funzione Ã¨ indipendente per ogni pixel e puÃ² essere
+	parallelizzato.*/
+	/*
+	forall (Ionpixel in Ionosfera)
+			{
+						{
+			double t=0;
+			double waveradius =0.;
+			double Energy = Fulmine.GetEnergy(); //non so se Ã¨ necessario // si lo Ã¨, Energy Ã¨ privata ;)
+			while(Energy >0)
+			{
+			waveradius = Fulmine.BoltPropagation(t);
+			t += dt; con dt da definire
+			Energy = ci sto lavorando: dipende dalla frequenza dell'onda! :/ // in caso inseriamo la frequenza come parametro in fulmine D:
+			ora devo trovare il modo di calcolare l'intersezione ionosfera-sfera del fulmine,
+			che rappresenta i pixel toccati
+			for each (RelPixel in InVista)
+				{
+				Enlight RelPixel
+				}
+			}
+	*/
 }
 
 double IonPixel::GetStatus()
