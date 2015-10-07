@@ -72,13 +72,20 @@ void IonPixel::CalcolaImpulso(Fulmine InFulmine)
 			{
 			waveradius = Fulmine.BoltPropagation(t);
 			t += dt; con dt da definire
-			Energy = ci sto lavorando: dipende dalla frequenza dell'onda! :/ // in caso inseriamo la frequenza come parametro in fulmine D:
-			ora devo trovare il modo di calcolare l'intersezione ionosfera-sfera del fulmine,
-			che rappresenta i pixel toccati
+			Energy = Fulmine.GetEnergy();
+			if (waveradius > CONST_HD){
 			for each (RelPixel in InVista)
+				{
+				double K = cos((90.-Fulmine.GetLat())*CONST_degree)sin((90.-PixLat)*CONST_degree) + sin((90.-Fulmine.GetLat())*CONST_degree)*sin((90.-PixLat)*CONST_degree)*cos((Fulmine.GetLong()-PixLong)*CONST_degree);
+				double angle = acos(K);
+				double distance = (CONST_R_earth+CONST_HD)/sin(angle);
+				if(distance > waveradius-err AND distance < waveradius+err)  //err = tolleranza da definire
 				{
 				Enlight RelPixel
 				}
+				}
+			 }//fine if
+				
 			}
 	*/
 }
