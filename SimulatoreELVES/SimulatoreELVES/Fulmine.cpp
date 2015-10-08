@@ -36,7 +36,7 @@ Fulmine::Fulmine(double In_Lat, double In_Long, double In_Energy, int in_MM, int
 
 Fulmine::~Fulmine()
 {
-	delete this;
+	//delete this;
 }
 
 /*

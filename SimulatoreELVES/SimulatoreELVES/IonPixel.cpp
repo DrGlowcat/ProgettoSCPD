@@ -29,7 +29,7 @@ IonPixel::IonPixel(double In_PosX, double In_PosY, map<int, Rilevatore> In_Groun
 
 IonPixel::~IonPixel()
 {
-	delete this;
+	//delete this;
 }
 
 void IonPixel::SetInVista(map<int, Rilevatore> In_GroundRel)

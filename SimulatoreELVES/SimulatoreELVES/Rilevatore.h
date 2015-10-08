@@ -20,7 +20,7 @@ private:
 	bool Status; //indica se acceso o spento.
 	int ResolutionX;
 	int ResolutionY;
-	map<int, RelPixel> Matrice_Osservazione;
+	map<int, RelPixel*> Matrice_Osservazione;
 public:
 	Rilevatore();
 	Rilevatore(double Lat, double Long, double r_e);

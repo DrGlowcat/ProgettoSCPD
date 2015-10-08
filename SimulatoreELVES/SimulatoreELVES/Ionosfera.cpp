@@ -71,7 +71,7 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad,
 
 Ionosfera::~Ionosfera()
 {
-	delete this;
+	//delete this;
 }
 
 int Ionosfera::GetRowResolution()

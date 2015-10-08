@@ -26,9 +26,9 @@ RelPixel::RelPixel(double X, double Y, double Orient, double Elev, double Azim)
 	Status = 0;
 }
 
-RelPixel::~RelPixel()
+RelPixel::~RelPixel(void)
 {
-	delete this;
+	//delete this;
 }
 
 double RelPixel::GetStatus()

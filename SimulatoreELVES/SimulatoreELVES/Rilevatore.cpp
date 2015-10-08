@@ -22,7 +22,7 @@ Rilevatore::Rilevatore()
 	ResolutionY = 0;
 	if (!Matrice_Osservazione.empty())
 	{
-		map<int, RelPixel> EmptyMatrix;
+		map<int, RelPixel*> EmptyMatrix;
 		Matrice_Osservazione = EmptyMatrix;
 	}
 }
@@ -40,7 +40,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	ResolutionY = 22;
 	if (!Matrice_Osservazione.empty())
 	{
-		map<int, RelPixel> EmptyMatrix;
+		map<int, RelPixel*> EmptyMatrix;
 		Matrice_Osservazione = EmptyMatrix;
 	}
 	else
@@ -52,6 +52,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 		double pixY=0.5*26.33;
 		double pixel_theta=(28.1/22)*CONST_degree; //ampiezza in elevation di un pixel
 		double pixel_phi=(30/20)*CONST_degree;  //ampiezza in azimut di un pixel
+		int ResCounter = 0;
 		for (int i = 0; i < 22; i++)//ciclo sulle righe
 		{
 			for(int j=0; j<20; j++)//ciclo sulle colonne
@@ -71,8 +72,9 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 				// te lo segna come errore perchè devi riferirti ad un oggetto:
 				double PixElev = 28.1*CONST_degree - j*pixel_theta;
 				double PixAzim = right_end*CONST_degree + i*pixel_phi;
-				RelPixel New_pixel = RelPixel(pixX, pixY, PixOrientation,PixElev,PixAzim);
-				Matrice_Osservazione[i] = New_pixel;
+				//RelPixel New_pixel = RelPixel(pixX, pixY, PixOrientation,PixElev,PixAzim);
+				Matrice_Osservazione[ResCounter] = &RelPixel(pixX, pixY, PixOrientation, PixElev, PixAzim);
+				ResCounter++;
 			}
 		}
 	}
@@ -83,7 +85,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 
 Rilevatore::~Rilevatore()
 {
-	delete this;
+	//delete this;
 }
 
 map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
@@ -108,7 +110,7 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 	//for (int k = 0; k < res; k++)
 	for (auto k :Matrice_Osservazione)
 		{
-			RelPixel * ActualRelPixel = &k.second;
+			RelPixel * ActualRelPixel = k.second;
 			/*
 			avevi ragione tu sui puntatori a classe, per usare i metodu di ActualRelPixel
 			devi usare l'operatore -> per fare un esempio ActualRelPixel->GetPixelElev()

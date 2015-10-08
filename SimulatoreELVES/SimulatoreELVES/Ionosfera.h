@@ -20,7 +20,7 @@ private :
 	double CenterLong;
 	double DeltaLat;
 	double DeltaLong;
-	map<int, IonPixel> Matrix;
+	map<int, class IonPixel> Matrix;
 	map<int, Rilevatore> GroundRel;// mappa dei rilevatori: contiene tutti i rilevatori nel sistema
 public:
 	Ionosfera();
