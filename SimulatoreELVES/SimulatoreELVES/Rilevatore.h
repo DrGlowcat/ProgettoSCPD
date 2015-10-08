@@ -23,7 +23,7 @@ private:
 	map<int, RelPixel> Matrice_Osservazione;
 public:
 	Rilevatore();
-	Rilevatore(double Lat, double Long, double r_e, int resX, int resY);
+	Rilevatore(double Lat, double Long, double r_e);
 	~Rilevatore();
 	map<int, RelPixel*> Rel2Ion(double pix_lat, double pix_long);
 	bool GetStatus();

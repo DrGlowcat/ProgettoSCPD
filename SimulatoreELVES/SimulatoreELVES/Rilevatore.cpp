@@ -27,7 +27,7 @@ Rilevatore::Rilevatore()
 	}
 }
 
-Rilevatore::Rilevatore(double Lat, double Long, double r_e, int resX, int resY)
+Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 {
 	LatSite = Lat*CONST_degree;
 	LongSite = Long*CONST_degree;
@@ -36,8 +36,8 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e, int resX, int resY)
 	Orientation = r_e + 0.5*CONST_pi; //meglio questa a occhio
 	//Orientation = GetOrientation();  non so quale dei due è meglio
 	Status = 0;
-	ResolutionX = resX;
-	ResolutionY = resY;
+	ResolutionX = 20;
+	ResolutionY = 22;
 	if (!Matrice_Osservazione.empty())
 	{
 		map<int, RelPixel> EmptyMatrix;
@@ -45,7 +45,6 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e, int resX, int resY)
 	}
 	else
 	{
-		// Andrebbe cambiato il nome perchè so che non si chiamano così gli angoli...
 		double PixOrientation = 0.0;
 		double VertAngle = 0.0;
 		double HoriAngle = 0.0;

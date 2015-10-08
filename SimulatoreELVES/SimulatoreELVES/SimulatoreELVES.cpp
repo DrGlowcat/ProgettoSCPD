@@ -104,3 +104,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+int testMain(int argc, char *argv[])
+{
+	Rilevatore testrel;
+	testrel = Rilevatore(0.1,0.2,0.3,3,4);
+	return 0;
+}
+
