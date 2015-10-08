@@ -35,5 +35,6 @@ public:
 	double GetLongSite();
 	int GetResolution();
 	bool Spotted(double alpha);
+	void SetStatus(bool In_Status);
 };
 

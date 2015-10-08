@@ -17,8 +17,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	gli strumenti per la valutazione delle prestazioni del codice insisme a tutti i metodi che 
 	ci permettono di salvare i vari risultati in appositi file.*/
 
-	Rilevatore testrel;
-	testrel = Rilevatore(0.1, 0.2, 0.3);
+	/*Rilevatore testrel;
+	testrel = Rilevatore(0.1, 0.2, 0.3);*/
+	map<int, Rilevatore*> ProvaMultiRel;
+	for (int i = 0; i < 4; i++)
+	{
+		ProvaMultiRel[i] = new Rilevatore(0.1, 0.2, (i + 1)*0.3);
+	}
+	
 
 	///*
 	//Inizializzazione del DB dei fulmini:

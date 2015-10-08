@@ -17,10 +17,10 @@ Rilevatore::Rilevatore()
 	Orientation = 0;
 	right_end = 0;
 	left_end = 0;
-	Status = 0;
+	Status = false;
 	ResolutionX = 0;
 	ResolutionY = 0;
-	if (!Matrice_Osservazione.empty())
+	if (Matrice_Osservazione.empty())
 	{
 		map<int, RelPixel*> EmptyMatrix;
 		Matrice_Osservazione = EmptyMatrix;
@@ -35,7 +35,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	left_end = r_e + CONST_pi;
 	Orientation = r_e + 0.5*CONST_pi; //meglio questa a occhio
 	//Orientation = GetOrientation();  non so quale dei due è meglio
-	Status = 0;
+	Status = false;
 	ResolutionX = 20;
 	ResolutionY = 22;
 	if (!Matrice_Osservazione.empty())
@@ -184,4 +184,8 @@ double Rilevatore::GetLongSite()
 int Rilevatore::GetResolution()
 {
 	return ResolutionX*ResolutionY;
+}
+void Rilevatore::SetStatus(bool In_Status)
+{
+	this->Status = In_Status;
 }
