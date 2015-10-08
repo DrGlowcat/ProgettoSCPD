@@ -19,7 +19,7 @@ RelPixel::RelPixel(double X, double Y, double Orient, double Elev, double Azim)
 {
 	//Costruttore di inizializzazione
 	pos_X = X;
-	pos_X = Y;
+	pos_Y = Y;
 	Orientation = Orient;
 	pixel_elev = Elev;
 	pixel_azimut = Azim;
