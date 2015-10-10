@@ -45,6 +45,6 @@ double const backwall[4] = {-30.00,60.03,-171.85,-116.68};  //orientamento della
 //FoV della camera: 30° in azimuth in 20 colonne, 28.1° in elevation in 22 righe
 int const RelXRes = 20;
 int const RelYRes = 22;
-int const IonXRes = 1920;
-int const IonYRes = 1080;
+int const IonXRes = 220;
+int const IonYRes = 200;
 Vector3D const PoloNord = Vector3D(0., 0., 1.);
