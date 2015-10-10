@@ -22,9 +22,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	map<int, Rilevatore*> ProvaMultiRel;
 	for (int i = 0; i < 4; i++)
 	{
-		ProvaMultiRel[i] = new Rilevatore(0.1, 0.2, (i + 1)*0.3);
+		ProvaMultiRel[i] = new Rilevatore(latsites[i], longsites[i], backwall[i]);
 	}
-	
+	Rilevatore* estrazione = ProvaMultiRel[2];
+	Ionosfera testIonosfera = Ionosfera(IonXRes, IonYRes, CONST_R_earth, augerCentre[0], augerCentre[1], deltaLong, deltaLat, ProvaMultiRel);
 
 	///*
 	//Inizializzazione del DB dei fulmini:

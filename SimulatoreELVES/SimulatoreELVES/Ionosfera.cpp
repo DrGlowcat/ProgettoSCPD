@@ -22,12 +22,12 @@ Ionosfera::Ionosfera()
 	DeltaLong = 0.0;
 	if (!Matrix.empty())
 	{
-		map<int, IonPixel> EmptyMatrix;
+		map<int, IonPixel*> EmptyMatrix;
 		Matrix = EmptyMatrix;
 	}
 }
 
-Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_DeltaX, double In_DeltaY, map<int, Rilevatore> In_GroundRel)
+Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad, double In_CenterX, double In_CenterY, double In_DeltaX, double In_DeltaY, map<int, Rilevatore*> In_GroundRel)
 {
 	RowResolution = In_RResolution;
 	ColResolution = In_CResolution;
@@ -40,7 +40,7 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad,
 	GroundRel = In_GroundRel;// ora vedo i rilevatori
 	if (!Matrix.empty())
 	{
-		map<int, IonPixel> EmptyMatrix;
+		map<int, IonPixel*> EmptyMatrix;
 		Matrix = EmptyMatrix;
 	}
 	else
@@ -60,12 +60,15 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad,
 				pixX += pix_long;
 				pixY += pix_lat;
 				//Matrix.insert(std::pair<int, IonPixel> (i,IonPixel()));
-				Matrix[i] = IonPixel(pixX, pixY, GroundRel);
+				Matrix[(i*ColResolution)+j] = new IonPixel(pixX, pixY, GroundRel);
+				cout << (i*ColResolution) + j << endl;
 				/*NOTA: per ora ogni pixel è vuoto devo implementare il
 			costruttore idoneo per i pixel prima di poter proseguire*/
 			}
 		}
+		cout << "donefor";
 	}
+	cout << "done";
 }
 
 
