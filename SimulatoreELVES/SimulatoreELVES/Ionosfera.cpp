@@ -57,14 +57,15 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad,
 /*ho semplicemente suddiviso la ionosfera in celle in base a latitudine e longitudine,
  * per sapere in quale punto del cielo si verifica l'evento.
 */
-				pixX += i*pix_long;
-				pixY += j*pix_lat;
 				//Matrix.insert(std::pair<int, IonPixel> (i,IonPixel()));
 				Matrix[(i*ColResolution)+j] = new IonPixel(pixX, pixY, GroundRel);
 				cout << (i*ColResolution) + j << endl;
 				/*NOTA: per ora ogni pixel è vuoto devo implementare il
 			costruttore idoneo per i pixel prima di poter proseguire*/
+				pixY += pix_lat;
 			}
+			pixX += pix_long;
+			pixY = 0.5*pix_lat;
 		}
 		cout << "donefor";
 	}

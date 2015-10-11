@@ -60,22 +60,25 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 				//larghezza del pixel=1.5°=45.6mm, altezza=0.866°=26.33mm
 				//le coordinate si riferiscono al centro del pixel
 				
-				//l'orientamento del pixel è 0 in quanto pari a quella del rilevatore?
-
-				pixX += i*45.6;
-				pixY += j*26.33;
+				//pixX += i*45.6;
+				//pixY += j*26.33;
 				/*
 				RelPixel.SetPixElev(28.1*CONST_degree-j*pixel_theta);
 				RelPixel.SetPixAzimut(right_end*CONST_degree+i*pixel_phi);
 				Matrice_Osservazione[i] = RelPixel(pixX, pixY);
 				*/
 				// te lo segna come errore perchè devi riferirti ad un oggetto:
-				double PixElev = 28.1*CONST_degree - j*pixel_theta;
-				double PixAzim = right_end*CONST_degree + i*pixel_phi;
+				
+				//Meglio evitare allocazioni dentro i cicli! specie se sono solo delle variabili di travaso!
+				//double PixElev = 28.1*CONST_degree - j*pixel_theta;
+				//double PixAzim = right_end*CONST_degree + i*pixel_phi;
 				//RelPixel New_pixel = RelPixel(pixX, pixY, PixOrientation,PixElev,PixAzim);
-				Matrice_Osservazione[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, PixElev, PixAzim);
+				Matrice_Osservazione[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1*CONST_degree - j*pixel_theta, right_end*CONST_degree + i*pixel_phi);
 				ResCounter++;
+				pixY += 26.33;
 			}
+			pixX += 45.6;
+			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
 		}
 	}
 	/*come si vede, è del tutto simile a quanto accade in Ionosfera, ma la
