@@ -4,7 +4,7 @@
  *  Created on: 20 Aug 2015
  *      Author: grumpycat
  */
-
+//PROVA DI COMMIT ECCETERA
 /*file che contiene tutte le costanti ed eventuali funzioni user defined eccetera. Per il momento metto qui anche i
 prototipi delle operazioni vettoriali, ma mi stavo chiedendo se non valga la pena di creare una classe "vettore 3D"
 con tutta la sua algebra
