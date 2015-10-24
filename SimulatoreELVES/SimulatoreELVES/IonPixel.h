@@ -13,13 +13,15 @@ private:
 	double Density;
 	map<int,RelPixel*> InVista; //mappiamo i pixel in vista in modo dinamico.
 	bool Status;
+	int Time_bolt2ion;
+	int Time_ion2rel;
 public:
 	IonPixel();
 	IonPixel(double In_PosX, double In_PosY, map<int, Rilevatore*> In_GroundRel);
 	~IonPixel();
 	void SetInVista(map<int, Rilevatore*> In_GroundRel);
 	void CalcolaImpulso(Fulmine in_Fulmine);
-	double GetStatus();
+	bool GetStatus();
 	double GetX();
 	double GetY();
 	double GetDensity();

@@ -57,10 +57,19 @@ passare anche più di un rilevatore (in caso siano presenti)*/
 
 void IonPixel::CalcolaImpulso(Fulmine InFulmine)
 {
-	698
 	//aggiornare con i bool e i due calcoli del tempo.
-	Status = false;
-	cout << "calcolata la funzione" << endl;
+	double distance2bolt = 23;
+	if (distance2bolt <= InFulmine.GetMaxRange())
+	{
+		Status = true;
+		//inserire formula per il calcolo del tempo
+		Time_bolt2ion = 24;
+		Time_ion2rel = 25;
+		for (auto k : InVista)
+		{
+			k.second->SetStatus(true, Time_bolt2ion + Time_ion2rel);
+		}
+	}
 		/*qui si calcola, per ogni IonPixel, il valore dell'impulso in base al fulmine
 	corrente. Il calcolo di tale funzione è indipendente per ogni pixel e può essere
 	parallelizzato.*/
@@ -93,7 +102,7 @@ void IonPixel::CalcolaImpulso(Fulmine InFulmine)
 	*/
 }
 
-double IonPixel::GetStatus()
+bool IonPixel::GetStatus()
 {
 	return Status;
 }

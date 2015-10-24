@@ -38,8 +38,19 @@ double RelPixel::GetStatus()
 
 void RelPixel::SetStatus(bool In_Status, int In_T_rec)
 {
-	Status = In_Status;
-	if ();
+	
+	if (Status != false)
+	{
+		if (In_T_rec > T_rec)
+		{
+			T_rec = In_T_rec;
+		}
+	}
+	else
+	{
+		Status = In_Status;
+		T_rec = In_T_rec;
+	}
 }
 
 double RelPixel::GetOrientation()
@@ -63,4 +74,36 @@ double RelPixel::GetPixElev()
 double RelPixel::GetPixAzimut()
 {
 	return pixel_azimut;
+}
+void RelPixel::setDeltaColor(int In_Time) // switch sul tempo per definire i colori
+{
+	//definire esattamente l'intervallo di tempo
+	switch (In_Time)//i case lavorano solo su interi mettere espressione di divisione qui.
+	{
+	case 1:
+		DeltaColor = 1;
+		break;
+	case 2:
+		DeltaColor = 2;
+		break;
+	case 3:
+		DeltaColor = 3;
+		break;
+	case 4:
+		DeltaColor = 4;
+		break;
+	case 5:
+		DeltaColor = 5;
+		break;
+	case 6:
+		DeltaColor = 6;
+		break;
+	default:
+		break;
+	}
+}
+
+int RelPixel::getDeltaColor()
+{
+	return DeltaColor;
 }

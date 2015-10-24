@@ -21,8 +21,8 @@ public:
 	void SetPixAzimut(double phi);
 	double GetPixElev();
 	double GetPixAzimut();
-	setDeltaColor() // switch sul tempo per definire i colori
-	getDeltaColor()
+	void setDeltaColor(int In_Time); // switch sul tempo per definire i colori
+	int getDeltaColor();
 
 	//il riferimento alla classe va solo nel cpp
 	//qui va solo il prototipo, nel cpp invece
