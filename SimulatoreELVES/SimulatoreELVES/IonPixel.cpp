@@ -41,7 +41,7 @@ passare anche più di un rilevatore (in caso siano presenti)*/
 	int counter = 0;
 	for (auto i : In_GroundRel)
 	{
-		auto risultati = i.second->Rel2Ion(PosX, PosY);
+		map<int, RelPixel*> risultati = i.second->Rel2Ion(PosX, PosY);
 		for (auto j : risultati)
 		{
 			/*questi cicli sono necessari per evitare che RelPixel

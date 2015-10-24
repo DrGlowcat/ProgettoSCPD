@@ -108,15 +108,30 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 	//RelpixLocation.SetMag(1.);
 	//RelpixLocation.SetTheta(relpix_elev);
 	//RelpixLocation.SetPhi(relpix_azimut);
+
+	RelPixel * ActualRelPixel;
+	double relpix_elev;
+	double relpix_azimut;
+	Vector3D RelpixLocation;
+	Vector3D IonLocation;
+	double arg;
+	double alpha;
+	double dist;
+	double ion_elev;
+	Vector3D Est;
+	Vector3D Avector;
+	Vector3D Bvector;
+	Vector3D Vertic;
+
 	int res = GetResolution();
 	Vector3D LocalNord = PoloNord;
 	//for (int k = 0; k < res; k++)
 	for (auto k :Matrice_Osservazione)
 		{
-			RelPixel * ActualRelPixel = k.second;
-			double relpix_elev = ActualRelPixel->GetPixElev();  //28.1/22
-			double relpix_azimut = ActualRelPixel->GetPixAzimut(); //30./20;
-			Vector3D RelpixLocation(1.,1.,1.);
+			ActualRelPixel = k.second;
+			relpix_elev = ActualRelPixel->GetPixElev();  //28.1/22
+			relpix_azimut = ActualRelPixel->GetPixAzimut(); //30./20;
+			RelpixLocation = Vector3D(1.,1.,1.);
 			RelpixLocation.SetMag(1.);
 			RelpixLocation.SetTheta(relpix_elev);
 			RelpixLocation.SetPhi(relpix_azimut);
@@ -130,24 +145,24 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 			//calcola distanza del piede della verticale dell'ionpixel
 			pix_lat *= CONST_degree;
 			pix_long *= CONST_degree;
-			double arg = cos(0.5*CONST_pi-pix_lat)*cos(0.5*CONST_pi-LatSite) + sin(0.5*CONST_pi-pix_lat)*sin(0.5*CONST_pi-LatSite)*cos(pix_long-LongSite);
-			double alpha = acos(arg);
-			double dist = alpha*CONST_R_earth;
+			arg = cos(0.5*CONST_pi-pix_lat)*cos(0.5*CONST_pi-LatSite) + sin(0.5*CONST_pi-pix_lat)*sin(0.5*CONST_pi-LatSite)*cos(pix_long-LongSite);
+			alpha = acos(arg);
+			dist = alpha*CONST_R_earth;
 			//calcola elevation del centro dell'ionpixel
-            double ion_elev = CONST_HD/dist - dist/(2.*CONST_R_earth);
+            ion_elev = CONST_HD/dist - dist/(2.*CONST_R_earth);
             //calcola azimut dell'ionpixel
-            Vector3D IonLocation(1.,1.,1.);
+			IonLocation = Vector3D(1., 1., 1.);
             IonLocation.SetMag(1.);
             IonLocation.SetPhi(pix_long);
             IonLocation.SetTheta(0.5*CONST_pi-pix_lat);
 			// se il metodo richiede un puntatore devi passargli un riferimento
-            Vector3D Est = LocalNord.Cross(&RelpixLocation);
+            Est = LocalNord.Cross(&RelpixLocation);
             Est.SetMag(1.);
-            Vector3D Avector = RelpixLocation.Cross(&IonLocation);
+            Avector = RelpixLocation.Cross(&IonLocation);
             Avector.SetMag(1.);
-            Vector3D Bvector = Avector.Cross(&RelpixLocation);
+            Bvector = Avector.Cross(&RelpixLocation);
             Bvector.SetMag(1.);
-            Vector3D Vertic = Bvector.Cross(&Est);
+            Vertic = Bvector.Cross(&Est);
             double ion_azimut = Bvector.Angle(&Est)/CONST_degree;
             if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
             //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
@@ -165,6 +180,7 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             	}
             }
 		}
+
 	return SeenMatrix;
 }
 bool Rilevatore::GetStatus()

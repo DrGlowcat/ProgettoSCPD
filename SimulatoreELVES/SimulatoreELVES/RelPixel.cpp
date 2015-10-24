@@ -24,6 +24,8 @@ RelPixel::RelPixel(double X, double Y, double Orient, double Elev, double Azim)
 	pixel_elev = Elev;
 	pixel_azimut = Azim;
 	Status = 0;
+	T_rec = 0;
+	DeltaColor = 0;
 }
 
 RelPixel::~RelPixel(void)
