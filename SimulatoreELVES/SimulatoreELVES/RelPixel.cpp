@@ -36,9 +36,10 @@ double RelPixel::GetStatus()
 	return Status;
 }
 
-void RelPixel::SetStatus(double In_Status)
+void RelPixel::SetStatus(bool In_Status, int In_T_rec)
 {
 	Status = In_Status;
+	if ();
 }
 
 double RelPixel::GetOrientation()

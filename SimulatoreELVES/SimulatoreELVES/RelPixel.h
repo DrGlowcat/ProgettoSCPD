@@ -7,18 +7,22 @@ private:
 	double pos_Y;
 	double pixel_elev;
 	double pixel_azimut;
-	double Status;
+	bool Status;
+	int T_rec; // tempo di ricezione in uSec
+	int DeltaColor;
 public:
 	RelPixel();
 	RelPixel(double X, double Y, double Orient, double Elev, double Azim);
 	~RelPixel();
 	double GetStatus();
-	void SetStatus(double In_Status);
+	void SetStatus(bool In_Status, int In_T_rec);
 	double GetOrientation();
 	void SetPixElev(double theta);
 	void SetPixAzimut(double phi);
 	double GetPixElev();
 	double GetPixAzimut();
+	setDeltaColor() // switch sul tempo per definire i colori
+	getDeltaColor()
 
 	//il riferimento alla classe va solo nel cpp
 	//qui va solo il prototipo, nel cpp invece

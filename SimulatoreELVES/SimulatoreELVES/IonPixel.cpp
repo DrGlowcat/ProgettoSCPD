@@ -57,7 +57,9 @@ passare anche più di un rilevatore (in caso siano presenti)*/
 
 void IonPixel::CalcolaImpulso(Fulmine InFulmine)
 {
-	Status = (PosX*Density) + (PosY*Density);
+	698
+	//aggiornare con i bool e i due calcoli del tempo.
+	Status = false;
 	cout << "calcolata la funzione" << endl;
 		/*qui si calcola, per ogni IonPixel, il valore dell'impulso in base al fulmine
 	corrente. Il calcolo di tale funzione è indipendente per ogni pixel e può essere

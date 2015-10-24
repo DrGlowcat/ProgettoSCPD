@@ -102,18 +102,25 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 	//FoV del singolo pixel, in gradi;
 	//forse è meglio metterla come informazione interna al pixel, perché in realtà si
 	//calcola in base alla posizione del pixel e del singolo rilevatore
-	double relpix_elev = RelPixel.GetPixElev();  //28.1/22
-	double relpix_azimut = RelPixel.GetPixAzimut(); //30./20;
-	Vector3D RelpixLocation(1.,1.,1.);
-	RelpixLocation.SetMag(1.);
-	RelpixLocation.SetTheta(relpix_elev);
-	RelpixLocation.SetPhi(relpix_azimut);
+	//double relpix_elev = RelPixel.GetPixElev();  //28.1/22
+	//double relpix_azimut = RelPixel.GetPixAzimut(); //30./20;
+	//Vector3D RelpixLocation(1.,1.,1.);
+	//RelpixLocation.SetMag(1.);
+	//RelpixLocation.SetTheta(relpix_elev);
+	//RelpixLocation.SetPhi(relpix_azimut);
 	int res = GetResolution();
 	Vector3D LocalNord = PoloNord;
 	//for (int k = 0; k < res; k++)
 	for (auto k :Matrice_Osservazione)
 		{
 			RelPixel * ActualRelPixel = k.second;
+			double relpix_elev = ActualRelPixel->GetPixElev();  //28.1/22
+			double relpix_azimut = ActualRelPixel->GetPixAzimut(); //30./20;
+			Vector3D RelpixLocation(1.,1.,1.);
+			RelpixLocation.SetMag(1.);
+			RelpixLocation.SetTheta(relpix_elev);
+			RelpixLocation.SetPhi(relpix_azimut);
+
 			/*
 			avevi ragione tu sui puntatori a classe, per usare i metodu di ActualRelPixel
 			devi usare l'operatore -> per fare un esempio ActualRelPixel->GetPixelElev()
