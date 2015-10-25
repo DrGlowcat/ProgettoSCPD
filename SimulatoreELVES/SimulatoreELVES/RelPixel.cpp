@@ -1,7 +1,8 @@
 /*Pixel del rilevatore. Oltre ad avere informazioni sulla posizione (magari condivise con tutti i pizel di uno stesso rilevatore)
 ha le "referenze" di ogni pixel atmosferico che vede in modo da sapere da chi prendere i dati. Una funzione importante dei 
 RelPixel è il calcolo dell'ordine di ricezione dei vari segnali in modo da poter creare delle immagini in funzione del tempo
-che siano significative e soprattutto correte.*/
+che siano significative e soprattutto correte.
+Tutti gli angoli sono in gradi per comodità -> tradurli in radianti all'inizio di ogni funzione*/
 #include "stdafx.h"
 #include "RelPixel.h"
 
@@ -20,7 +21,7 @@ RelPixel::RelPixel(double X, double Y, double Orient, double Elev, double Azim)
 	//Costruttore di inizializzazione
 	pos_X = X;
 	pos_Y = Y;
-	Orientation = Orient;
+	Orientation = Orient;  //è data dal rilevatore cui appartiene
 	pixel_elev = Elev;
 	pixel_azimut = Azim;
 	Status = 0;
@@ -62,12 +63,12 @@ double RelPixel::GetOrientation()
 
 void RelPixel::SetPixElev(double theta)
 {
-	pixel_elev = theta;
+	pixel_elev = theta; //con theta in gradi
 }
 
 void RelPixel::SetPixAzimut(double phi)
 {
-	pixel_azimut = phi;
+	pixel_azimut = phi;  //phi in gradi
 }
 double RelPixel::GetPixElev()
 {

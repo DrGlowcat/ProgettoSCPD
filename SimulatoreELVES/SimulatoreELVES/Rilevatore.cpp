@@ -1,7 +1,9 @@
 /*Similmente alla classe Ionosfera, Rilevatore è un contenitore di Pixel. Anche qui è possibile definire la "risoluzione" del rilevatore
 ovvero il numero di pixel del rilevatore stesso. Diversamente dalla classe Ionosfera possiamo avere più oggetti di tipo Rilevatore presenti
 contemporaneamente nel sistema. Ogni pixel del rilevatore è associato a uno o più IonPixel, va quindi implementata una funzione che,
-potenzialmente, possa sommare i vari contributi.*/
+potenzialmente, possa sommare i vari contributi.
+Ho deciso di tenere le coordinate in gradi, perché è più facile controllarle a occhio; all'inizio di
+ogni funzione le convertirò in radianti per i calcoli*/
 #include "stdafx.h"
 #include "Rilevatore.h"
 #include "RelPixel.h"
@@ -29,12 +31,12 @@ Rilevatore::Rilevatore()
 
 Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 {
-	LatSite = Lat*CONST_degree;
-	LongSite = Long*CONST_degree;
-	right_end = r_e; //r_e si prende dal vettore backwall, che si trova in Tools.h
+	//trasformazione delle coordinate in radianti
+	LatSite = Lat;
+	LongSite = Long;
+	right_end = r_e; //r_e si prende dal vettore backwall, che è in gradi
 	left_end = r_e + CONST_pi;
-	Orientation = r_e + 0.5*CONST_pi; //meglio questa a occhio
-	//Orientation = GetOrientation();  non so quale dei due è meglio
+	Orientation = r_e + 90.; //orientazione dell'intero rilevatore, in gradi
 	Status = false;
 	ResolutionX = 20;
 	ResolutionY = 22;
@@ -45,13 +47,13 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	}
 	else
 	{
-		double PixOrientation = 0.0;
+		double PixOrientation = Orientation;
 		double VertAngle = 0.0;
 		double HoriAngle = 0.0;
 		double pixX=0.5*45.6;
 		double pixY=0.5*26.33;
-		double pixel_theta=(28.1/22)*CONST_degree; //ampiezza in elevation di un pixel
-		double pixel_phi=(30/20)*CONST_degree;  //ampiezza in azimut di un pixel
+		double pixel_theta=(28.1/22)*CONST_degree; //ampiezza (rad) in elevation di un pixel
+		double pixel_phi=(30/20)*CONST_degree;  //ampiezza (rad) in azimut di un pixel
 		int ResCounter = 0;
 		for (int i = 0; i < 22; i++)//ciclo sulle righe
 		{
@@ -93,6 +95,8 @@ Rilevatore::~Rilevatore()
 
 map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 {
+	LatSite *= CONST_degree;
+	LongSite *= CONST_degree;  //adesso le coordinate sono in radianti
 	map<int, RelPixel*> SeenMatrix;
 	int SeenMatrixIndex = { 0 };
 	/*questa funzione è pensata per assegnare un certo pixel del rilevatore
@@ -139,8 +143,6 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 			/*
 			avevi ragione tu sui puntatori a classe, per usare i metodu di ActualRelPixel
 			devi usare l'operatore -> per fare un esempio ActualRelPixel->GetPixelElev()
-			Altra cosa, non è testato che funzioni, sembra solo che piaccia al compilatore
-			ergo incrocia le dita!!
 			*/
 			//calcola distanza del piede della verticale dell'ionpixel
 			pix_lat *= CONST_degree;
@@ -194,18 +196,18 @@ bool Rilevatore::Spotted(double alpha)
 	if(alpha >= right_end && alpha <= left_end) spotted = 1;
 	return spotted;
 }
-double Rilevatore::GetOrientation() //risultato in radianti
+double Rilevatore::GetOrientation() 
 {
-	double orientation = right_end + 0.5*CONST_pi;
+	double orientation = right_end + 90.; //in gradi
 	return orientation;
 }
 double Rilevatore::GetLatSite()
 {
-	return LatSite;
+	return LatSite; //in gradi
 }
 double Rilevatore::GetLongSite()
 {
-	return LongSite;
+	return LongSite; //in gradi
 }
 int Rilevatore::GetResolution()
 {

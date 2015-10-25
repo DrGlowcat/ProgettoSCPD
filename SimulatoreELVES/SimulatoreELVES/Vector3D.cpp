@@ -81,11 +81,26 @@ Vector3D Vector3D::Cross(Vector3D *v1)
 	Vector3D vett(comp_y*v1->GetZ()-v1->GetY()*comp_z, comp_z*v1->GetX()-v1->GetZ()*comp_x, comp_x*v1->GetY()-v1->GetX()*comp_y);
 	return vett;
 }
+//imposta la norma di un vettore al valore del double fornito
+void Vector3D::SetMag(double n)
+{
+	double factor = Norma();
+	if(factor != 0)
+	{
+		factor = n/factor;
+		SetX(comp_x*factor);
+		SetY(comp_y*factor);
+		SetZ(comp_z*factor);
+	}
+}
+//Funzioni che lavorano sugli angoli:
+//sia argomento che risultato sono in gradi
 //imposta angolo polare
 void Vector3D::SetTheta(double th)
 {
+	th *= CONST_degree;
 	double mag = Norma();
-	double ph = GetPhi();
+	double ph = GetPhi() * CONST_degree;
 	SetX(mag*sin(th)*cos(th));
 	SetY(mag*sin(th)*sin(ph));
 	SetZ(mag*cos(th));
@@ -93,6 +108,7 @@ void Vector3D::SetTheta(double th)
 //imposta angolo azimutale
 void Vector3D::SetPhi(double ph)
 {
+	ph *= CONST_degree;
 	double xy = sqrt(comp_x*comp_x + comp_y*comp_y);
 	SetX(xy*cos(ph));
 	SetY(xy*sin(ph));
@@ -101,14 +117,14 @@ void Vector3D::SetPhi(double ph)
 double Vector3D::GetTheta()
 {
 	double theta = atan2(comp_y,comp_x);
-	return theta;
+	return theta / CONST_degree;
 }
 
 //restituisce azimut
 double Vector3D::GetPhi()
 {
 	double phi = atan2(sqrt(comp_x*comp_x + comp_y*comp_y), comp_z);
-	return phi;
+	return phi / CONST_degree;
 }
 
 //angolo tra due vettori
@@ -122,19 +138,6 @@ double Vector3D::Angle(Vector3D *v)
 		if(arg > 1.) arg = 1.;
 		if(arg < -1.) arg = -1.;
 		double angle = acos(arg);
-		return angle;
-	}
-}
-
-//imposta la norma di un vettore al valore del double fornito
-void Vector3D::SetMag(double n)
-{
-	double factor = Norma();
-	if(factor != 0)
-	{
-		factor = n/factor;
-		SetX(comp_x*factor);
-		SetY(comp_y*factor);
-		SetZ(comp_z*factor);
+		return angle / CONST_degree;
 	}
 }

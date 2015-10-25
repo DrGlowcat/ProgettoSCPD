@@ -19,11 +19,6 @@ con tutta la sua algebra
 //#define CONST_degree CONST_pi/180;  //conversione gradi-radianti
 //#define CONST_r_earth 6371;  //raggio terrestre in km
 
-/*non mi chedere perchè, ma in qualche modo gli da fastidi
-il define, per ovviare a tutto ciò ho definito le variabili
-come double const. Ora ci sono due vie percorribili, o si lascia
-così, o si inventano dei getter per le costanti. Io opterei
-per la prima che è più semplice e meno caotica.*/
 double const CONST_spdoflight { 0.3 };  //in km/microsec
 double const CONST_pi { 3.14159265359 };
 double const CONST_degree { CONST_pi / 180 };  //conversione gradi-radianti
@@ -31,13 +26,13 @@ double const CONST_R_earth { 6371 };  //raggio terrestre in km
 double const CONST_HD { 9000 };   //altezza dello strato di emissione
 /**/
 
-double const augerCentre[2] = {-35.25, -69.25};
-double const deltaLong = 20;
-double const deltaLat = deltaLong*cos(augerCentre[0] * CONST_degree);
-double const latMax = augerCentre[0] + 10;
-double const latMin = latMax - deltaLat;
-double const longMin = augerCentre[1] - 0.5*deltaLong;
-double const longMax = augerCentre[1] + 0.5*deltaLong;
+double const augerCentre[2] = {-35.25, -69.25}; //in gradi
+double const deltaLong = 20; //in gradi
+double const deltaLat = deltaLong*cos(augerCentre[0] * CONST_degree); //in gradi
+double const latMax = augerCentre[0] + 10; //in gradi
+double const latMin = latMax - deltaLat; //in gradi
+double const longMin = augerCentre[1] - 0.5*deltaLong; //in gradi
+double const longMax = augerCentre[1] + 0.5*deltaLong; //in gradi
 double const longsites[4] = {-69.449673,-69.012203,-69.210845,-69.499633};  //longitudini dei 4 telescopi
 double const latsites[4] = {-35.495759,-35.291974,-34.935916,-35.114138};  //latitudini dei telescopi
 //per i vettori: 0=LosLeones, 1=LosMorados, 2=LomaAmarilla, 3=Coihueco
