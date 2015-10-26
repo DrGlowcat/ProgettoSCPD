@@ -155,8 +155,8 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             //calcola azimut dell'ionpixel
 			IonLocation = Vector3D(1., 1., 1.);
             IonLocation.SetMag(1.);
-            IonLocation.SetPhi(pix_long);
-            IonLocation.SetTheta(0.5*CONST_pi-pix_lat);
+            IonLocation.SetPhi(pix_long/CONST_degree);
+            IonLocation.SetTheta(0.5*CONST_pi-pix_lat/CONST_degree);
 			// se il metodo richiede un puntatore devi passargli un riferimento
             Est = LocalNord.Cross(&RelpixLocation);
             Est.SetMag(1.);
@@ -165,7 +165,7 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             Bvector = Avector.Cross(&RelpixLocation);
             Bvector.SetMag(1.);
             Vertic = Bvector.Cross(&Est);
-            double ion_azimut = Bvector.Angle(&Est)/CONST_degree;
+            double ion_azimut = Bvector.Angle(&Est); //già in gradi
             if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
             //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
 

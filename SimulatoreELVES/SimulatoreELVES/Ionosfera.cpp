@@ -33,7 +33,7 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad,
 	ColResolution = In_CResolution;
 	TotResolution = RowResolution*ColResolution; // davvero serve?
 	CurveRad = In_CurveRad;
-	CenterLat = In_CenterX;
+	CenterLat = In_CenterX; //vengono presi da Tools e sono tutti in gradi
 	CenterLong = In_CenterY;
 	DeltaLat = In_DeltaX;
 	DeltaLong = In_DeltaY;
@@ -45,15 +45,14 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad,
 	}
 	else
 	{
-		double pix_long = DeltaLong/RowResolution; //ampiezza in long del pixel
-		double pix_lat = DeltaLat/ColResolution;
-		double pixX=0.5*pix_long;  //coord riferite al centro del pixel
+		double pix_long = DeltaLong/RowResolution; //ampiezza in long del pixel, in gradi
+		double pix_lat = DeltaLat/ColResolution;  //in gradi
+		double pixX=0.5*pix_long;  //coord riferite al centro del pixel, in gradi
 		double pixY=0.5*pix_lat;
 		for (int i = 0; i < RowResolution; i++)
 		{
 			for(int j=0; j<ColResolution; j++)
 			{
-				// definire come calcolare la posizione del particolare pixel
 /*ho semplicemente suddiviso la ionosfera in celle in base a latitudine e longitudine,
  * per sapere in quale punto del cielo si verifica l'evento.
 */
