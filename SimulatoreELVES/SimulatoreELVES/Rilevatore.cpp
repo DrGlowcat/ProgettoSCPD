@@ -95,6 +95,13 @@ Rilevatore::~Rilevatore()
 
 map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 {
+	/*
+	TODO:
+	- eliminare i cambiamenti ai valori del rilevatore. a furia di moltiplicare torna tutto zero.
+	- assicurarsi che le variabili di input siano travasate in variabili locali (magari è uguale, ma meglio essere sicuri)
+	- Se finalmente vede qualcosa; assicurarsi che il risultato finale sia correttamente passato in output.
+	- Portare tutte le dichiarazioni fuori dai cicli. (è inefficente come solo il cristo sa!)
+	*/
 	LatSite *= CONST_degree;
 	LongSite *= CONST_degree;  //adesso le coordinate sono in radianti
 	Orientation *= CONST_degree;
@@ -183,6 +190,7 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 					*/
 					SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
 					SeenMatrixIndex++;
+					cout << "finalmente" << endl;
             	}
             }
 		}
