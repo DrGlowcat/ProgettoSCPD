@@ -97,6 +97,7 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
 {
 	LatSite *= CONST_degree;
 	LongSite *= CONST_degree;  //adesso le coordinate sono in radianti
+	Orientation *= CONST_degree;
 	map<int, RelPixel*> SeenMatrix;
 	int SeenMatrixIndex = { 0 };
 	/*questa funzione è pensata per assegnare un certo pixel del rilevatore
@@ -168,10 +169,13 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double pix_lat, double pix_long)
             double ion_azimut = Bvector.Angle(&Est); //già in gradi
             if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
             //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
+			
+			double pixel_theta=(28.1/22); //ampiezza (gradi) in elevation di un pixel
+		    double pixel_phi=(30/20);  //ampiezza (gradi) in azimut di un pixel
 
-            if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + ActualRelPixel->GetPixAzimut())
+            if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + pixel_theta)
             {
-            	if(ion_elev > relpix_elev - ActualRelPixel->GetPixElev() && ion_elev < relpix_elev)
+            	if(ion_elev > relpix_elev - pixel_phi && ion_elev < relpix_elev)
             	{
 					/*
 					questo è il codice da usare per mettere il riferimento nella matrice
