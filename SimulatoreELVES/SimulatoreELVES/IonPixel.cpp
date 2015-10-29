@@ -39,9 +39,10 @@ void IonPixel::SetInVista(map<int, Rilevatore*> In_GroundRel)
 /*da decidere gli input: magari è comodo usare un puntatore in modo da potergli 
 passare anche più di un rilevatore (in caso siano presenti)*/
 	int counter = 0;
+	map<int, RelPixel*> risultati;
 	for (auto i : In_GroundRel)
 	{
-		map<int, RelPixel*> risultati = i.second->Rel2Ion(PosX, PosY);
+		risultati = i.second->Rel2Ion(PosX, PosY);
 		for (auto j : risultati)
 		{
 			/*questi cicli sono necessari per evitare che RelPixel
@@ -52,7 +53,7 @@ passare anche più di un rilevatore (in caso siano presenti)*/
 			counter++;
 		}
 	}
-	//cout << "done pixel";
+	cout << counter<<endl;
 }
 
 void IonPixel::CalcolaImpulso(Fulmine InFulmine)

@@ -196,11 +196,11 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 					*/
 					SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
 					SeenMatrixIndex++;
-					cout << "finalmente" << endl;
+					//cout << "finalmente" << endl;
             	}
             }
 		}
-
+	//if (SeenMatrixIndex!=0) cout << SeenMatrixIndex << endl;
 	return SeenMatrix;
 }
 bool Rilevatore::GetStatus()
