@@ -71,12 +71,13 @@ double Fulmine::GetEnergy()
 	return Energy;
 }
 
-double BoltPropagation(double t)
+/*double BoltPropagation(double t)
 {
 //t è il tempo trascorso dalla caduta del fulmine
 	double raggio = 0.;
 	t = 0;
+	
 	raggio = CONST_spdoflight * t;
 	return raggio;
 	// return CONST_spdoflight * t; //metodo condensato ;)
-}
+}*/
