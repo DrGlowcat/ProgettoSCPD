@@ -60,10 +60,10 @@ passare anche più di un rilevatore (in caso siano presenti)*/
 void IonPixel::CalcolaImpulso(Fulmine InFulmine)
 {
 	//aggiornare con i bool e i due calcoli del tempo.
-		double bolt_lat = InFulmine->GetLat();
-		double bolt_long = InFulmine->GetLong();
-		double pixLat = pixY * CONST_degree;
-		double pixLong = pixX * CONST_degree;
+		double bolt_lat = InFulmine.GetLat();
+		double bolt_long = InFulmine.GetLong();
+		double pixLat = PosY * CONST_degree;
+		double pixLong = PosX * CONST_degree;
 	    double arg = cos(0.5*CONST_pi - pixLat)*cos(0.5*CONST_pi - bolt_lat) + sin(0.5*CONST_pi - pixLat)*sin(0.5*CONST_pi - bolt_lat)*cos(pixLong - bolt_long);
 		double alpha = acos(arg);
 	    double distance2bolt = alpha * CONST_R_earth ; //in km
