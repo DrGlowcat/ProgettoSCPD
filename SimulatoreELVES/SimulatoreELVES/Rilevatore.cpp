@@ -186,7 +186,7 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 			pixel_theta=(28.1/22); //ampiezza (gradi) in elevation di un pixel
 		    pixel_phi=(30/20);  //ampiezza (gradi) in azimut di un pixel
 
-            if(ion_azimut > relpix_azimut && ion_azimut < relpix_azimut + pixel_theta)
+            if(ion_azimut < relpix_azimut && ion_azimut > relpix_azimut + pixel_theta)
             {
             	if(ion_elev > relpix_elev - pixel_phi && ion_elev < relpix_elev)
             	{
