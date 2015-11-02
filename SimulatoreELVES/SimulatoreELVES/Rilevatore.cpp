@@ -39,7 +39,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	Orientation = r_e + 90.; //orientazione dell'intero rilevatore, in gradi
 	Status = false;
 	ResolutionX = 20;
-	ResolutionY = 22;
+	ResolutionY = 22*6;
 	if (!Matrice_Osservazione.empty())
 	{
 		map<int, RelPixel*> EmptyMatrix;
@@ -55,9 +55,9 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 		double pixel_theta=(28.1/22)*CONST_degree; //ampiezza (rad) in elevation di un pixel
 		double pixel_phi=(30/20)*CONST_degree;  //ampiezza (rad) in azimut di un pixel
 		int ResCounter = 0;
-		for (int i = 0; i < 22; i++)//ciclo sulle righe
+		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
 		{
-			for(int j=0; j<20; j++)//ciclo sulle colonne
+			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
 			{
 				//larghezza del pixel=1.5°=45.6mm, altezza=0.866°=26.33mm
 				//le coordinate si riferiscono al centro del pixel
@@ -143,7 +143,6 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 
 	int res = GetResolution();
 	Vector3D LocalNord = PoloNord;
-	//for (int k = 0; k < res; k++)
 	for (auto k :Matrice_Osservazione)
 		{
 			ActualRelPixel = k.second;
