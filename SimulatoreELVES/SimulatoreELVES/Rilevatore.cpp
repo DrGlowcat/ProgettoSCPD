@@ -35,7 +35,8 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	LatSite = Lat;
 	LongSite = Long;
 	right_end = r_e; //r_e si prende dal vettore backwall, che è in gradi
-	left_end = r_e + CONST_pi;
+	//left_end = r_e + CONST_pi; //R_e è in gradi!
+	left_end = r_e + 180;
 	Orientation = r_e + 90.; //orientazione dell'intero rilevatore, in gradi
 	Status = false;
 	ResolutionX = 20;
@@ -77,7 +78,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 				//RelPixel New_pixel = RelPixel(pixX, pixY, PixOrientation,PixElev,PixAzim);
 				
 				//probabile errore nell'assegnazione di theta e phi 
-				Matrice_Osservazione[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1*CONST_degree - j*pixel_theta, right_end*CONST_degree + i*pixel_phi);
+				Matrice_Osservazione[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1*CONST_degree - (j+0.5)*pixel_theta, right_end*CONST_degree + (i+0.5)*pixel_phi);
 				ResCounter++;
 				pixY += 26.33;
 			}
