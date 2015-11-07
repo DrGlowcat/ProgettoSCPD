@@ -53,8 +53,8 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 		double HoriAngle = 0.0;
 		double pixX=0.5*45.6;
 		double pixY=0.5*26.33;
-		double pixel_theta=(28.1/22)*CONST_degree; //ampiezza (rad) in elevation di un pixel
-		double pixel_phi=(30/20)*CONST_degree;  //ampiezza (rad) in azimut di un pixel
+		double pixel_theta=28.1/22; //ampiezza (gradi) in elevation di un pixel
+		double pixel_phi=30/20;  //ampiezza (gradi) in azimut di un pixel
 		int ResCounter = 0;
 		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
 		{
@@ -78,7 +78,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 				//RelPixel New_pixel = RelPixel(pixX, pixY, PixOrientation,PixElev,PixAzim);
 				
 				//probabile errore nell'assegnazione di theta e phi 
-				Matrice_Osservazione[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1*CONST_degree - (j+0.5)*pixel_theta, right_end*CONST_degree + (i+0.5)*pixel_phi);
+				Matrice_Osservazione[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
 				ResCounter++;
 				pixY += 26.33;
 			}
