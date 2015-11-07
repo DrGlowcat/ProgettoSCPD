@@ -188,9 +188,9 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 			pixel_theta=(28.1/22); //ampiezza (gradi) in elevation di un pixel
 		    pixel_phi=(30/20);  //ampiezza (gradi) in azimut di un pixel
 
-            if(fabs(ion_azimut)<fabs(relpix_azimut+0.5*pixel_theta))
+            if(ion_azimut<(relpix_azimut+0.5*pixel_theta) && ion_azimut>(relpix_azimut-0.5*pixel_theta))
             {
-            	if(fabs(ion_elev)<fabs(relpix_elev+0.5*pixel_phi))
+            	if(ion_elev<(relpix_elev+0.5*pixel_phi) && ion_elev>(relpix_elev-0.5*pixel_phi))
             	{
 					/*
 					questo è il codice da usare per mettere il riferimento nella matrice
