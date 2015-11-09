@@ -6,6 +6,7 @@ se ci sono problemi in fase di parallelizzazione.*/
 
 #include "stdafx.h"
 #include "Ionosfera.h"
+#include "Tools.h"
 using namespace std;
 
 
@@ -47,8 +48,8 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad,
 	{
 		double pix_long = DeltaLong/RowResolution; //ampiezza in long del pixel, in gradi
 		double pix_lat = DeltaLat/ColResolution;  //in gradi
-		double pixX=0.5*pix_long;  //coord riferite al centro del pixel, in gradi
-		double pixY=0.5*pix_lat;
+		double pixX = longMin + 0.5*pix_long;  //coord riferite al centro del pixel, in gradi
+		double pixY = latMin + 0.5*pix_lat;
 		for (int i = 0; i < RowResolution; i++)
 		{
 			for(int j=0; j<ColResolution; j++)
@@ -62,7 +63,7 @@ Ionosfera::Ionosfera(int In_RResolution, int In_CResolution, double In_CurveRad,
 				pixY += pix_lat;
 			}
 			pixX += pix_long;
-			//pixY = 0.5*pix_lat;
+			pixY = 0.5*pix_lat;
 		}
 		//cout << "donefor";
 	}
