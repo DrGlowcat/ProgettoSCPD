@@ -82,7 +82,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FoV.h" />
     <ClInclude Include="Fulmine.h" />
+    <ClInclude Include="GraphicsFramework.h" />
     <ClInclude Include="Ionosfera.h" />
     <ClInclude Include="IonPixel.h" />
     <ClInclude Include="RelPixel.h" />
@@ -95,6 +97,7 @@
     <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FoV.cpp" />
     <ClCompile Include="Fulmine.cpp" />
     <ClCompile Include="Ionosfera.cpp" />
     <ClCompile Include="IonPixel.cpp" />
