@@ -25,7 +25,12 @@ Rilevatore::Rilevatore()
 	if (Matrice_Osservazione.empty())
 	{
 		map<int, RelPixel*> EmptyMatrix;
-		Matrice_Osservazione = EmptyMatrix;
+		Mirror1 = EmptyMatrix;
+		Mirror2 = EmptyMatrix;
+		Mirror3 = EmptyMatrix;
+		Mirror4 = EmptyMatrix;
+		Mirror5 = EmptyMatrix;
+		Mirror6 = EmptyMatrix;
 	}
 }
 
@@ -37,10 +42,10 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	right_end = r_e; //r_e si prende dal vettore backwall, che è in gradi
 	//left_end = r_e + CONST_pi; //R_e è in gradi!
 	left_end = r_e + 180;
-	Orientation = r_e + 90.; //orientazione dell'intero rilevatore, in gradi
+	Orientation = r_e; //orientazione dell'intero rilevatore, in gradi
 	Status = false;
 	ResolutionX = 20;
-	ResolutionY = 22*6;
+	ResolutionY = 22;
 	if (!Matrice_Osservazione.empty())
 	{
 		map<int, RelPixel*> EmptyMatrix;
@@ -48,7 +53,7 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	}
 	else
 	{
-		double PixOrientation = Orientation;
+		double PixOrientation = r_e;
 		double VertAngle = 0.0;
 		double HoriAngle = 0.0;
 		double pixX=0.5*45.6;
@@ -59,26 +64,69 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
 		{
 			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
-			{
-				//larghezza del pixel=1.5°=45.6mm, altezza=0.866°=26.33mm
-				//le coordinate si riferiscono al centro del pixel
-				
-				//pixX += i*45.6;
-				//pixY += j*26.33;
-				/*
-				RelPixel.SetPixElev(28.1*CONST_degree-j*pixel_theta);
-				RelPixel.SetPixAzimut(right_end*CONST_degree+i*pixel_phi);
-				Matrice_Osservazione[i] = RelPixel(pixX, pixY);
-				*/
-				// te lo segna come errore perchè devi riferirti ad un oggetto:
-				
-				//Meglio evitare allocazioni dentro i cicli! specie se sono solo delle variabili di travaso!
-				//double PixElev = 28.1*CONST_degree - j*pixel_theta;
-				//double PixAzim = right_end*CONST_degree + i*pixel_phi;
-				//RelPixel New_pixel = RelPixel(pixX, pixY, PixOrientation,PixElev,PixAzim);
-				
-				//probabile errore nell'assegnazione di theta e phi 
-				Matrice_Osservazione[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+			{ 
+				PixOrientation += 30.;
+				Mirror1[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+				ResCounter++;
+				pixY += 26.33;
+			}
+			pixX += 45.6;
+			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
+		}
+		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
+		{
+			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
+			{ 
+				PixOrientation += 30.;
+				Mirror2[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+				ResCounter++;
+				pixY += 26.33;
+			}
+			pixX += 45.6;
+			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
+		}
+		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
+		{
+			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
+			{ 
+				PixOrientation += 30.;				
+				Mirror3[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+				ResCounter++;
+				pixY += 26.33;
+			}
+			pixX += 45.6;
+			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
+		}
+		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
+		{
+			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
+			{ 
+				PixOrientation += 30.;				
+				Mirror4[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+				ResCounter++;
+				pixY += 26.33;
+			}
+			pixX += 45.6;
+			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
+		}
+		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
+		{
+			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
+			{ 
+				PixOrientation += 30.;				
+				Mirror5[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+				ResCounter++;
+				pixY += 26.33;
+			}
+			pixX += 45.6;
+			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
+		}
+		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
+		{
+			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
+			{ 
+				PixOrientation += 30.;				
+				Mirror6[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
 				ResCounter++;
 				pixY += 26.33;
 			}
@@ -86,9 +134,6 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
 		}
 	}
-	/*come si vede, è del tutto simile a quanto accade in Ionosfera, ma la
-	"catena" di chiamate a funzione è molto più breve, ovvero si crea direttamente
-	il pixel e non si va oltre.*/
 }
 
 Rilevatore::~Rilevatore()
@@ -98,74 +143,33 @@ Rilevatore::~Rilevatore()
 
 map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 {
-	/*
-	TODO:
-	° eliminare i cambiamenti ai valori del rilevatore. a furia di moltiplicare torna tutto zero.
-	- assicurarsi che le variabili di input siano travasate in variabili locali (magari è uguale, ma meglio essere sicuri)
-	- Se finalmente vede qualcosa; assicurarsi che il risultato finale sia correttamente passato in output.
-	- Portare tutte le dichiarazioni fuori dai cicli. (è inefficente come solo il cristo sa!)
-	*/
-	//LatSite *= CONST_degree;
-	//LongSite *= CONST_degree;  //adesso le coordinate sono in radianti
-	//Orientation *= CONST_degree;
 	double tempLatSite = LatSite*CONST_degree;
 	double tempLongSite = LongSite*CONST_degree;
 	double tempOrientation = Orientation*CONST_degree;//inutilizzato nel codice
 	map<int, RelPixel*> SeenMatrix;
 	int SeenMatrixIndex = { 0 };
-	/*questa funzione è pensata per assegnare un certo pixel del rilevatore
-	a un pixel della ionosfera. Il dato che ritorna dovrebbe essere un puntatore
-	al pixel del rilevatore, in modo da rendere più facile la modifica da parte
-	dei metodi degli IonPixel.*/
-	//FoV del singolo pixel, in gradi;
-	//forse è meglio metterla come informazione interna al pixel, perché in realtà si
-	//calcola in base alla posizione del pixel e del singolo rilevatore
-	//double relpix_elev = RelPixel.GetPixElev();  //28.1/22
-	//double relpix_azimut = RelPixel.GetPixAzimut(); //30./20;
-	//Vector3D RelpixLocation(1.,1.,1.);
-	//RelpixLocation.SetMag(1.);
-	//RelpixLocation.SetTheta(relpix_elev);
-	//RelpixLocation.SetPhi(relpix_azimut);
 
 	RelPixel * ActualRelPixel;
 	double relpix_elev;
 	double relpix_azimut;
 	Vector3D RelpixLocation;
 	Vector3D IonLocation;
-	double arg;
-	double alpha;
-	double dist;
-	double ion_elev;
-	Vector3D Est;
-	Vector3D Avector;
-	Vector3D Bvector;
-	Vector3D Vertic;
+	double ion_elev, ion_azimut;
 	double pix_lat, pix_long;
-	double ion_azimut;
 	double pixel_theta, pixel_phi;
 
 	int res = GetResolution();
-	Vector3D LocalNord = PoloNord;
-	for (auto k :Matrice_Osservazione)
+	for (auto k :Mirror1)
 		{
 			ActualRelPixel = k.second;
-			relpix_elev = ActualRelPixel->GetPixElev();  //28.1/22
-			relpix_azimut = ActualRelPixel->GetPixAzimut(); //30./20;
+			relpix_elev = ActualRelPixel->GetPixElev();
+			relpix_azimut = ActualRelPixel->GetPixAzimut();
 			RelpixLocation = Vector3D(1.,1.,1.);
 			RelpixLocation.SetMag(1.);
 			RelpixLocation.SetTheta(relpix_elev);
 			RelpixLocation.SetPhi(relpix_azimut);
-
-			/*
-			avevi ragione tu sui puntatori a classe, per usare i metodu di ActualRelPixel
-			devi usare l'operatore -> per fare un esempio ActualRelPixel->GetPixelElev()
-			*/
-			//calcola distanza del piede della verticale dell'ionpixel
-			pix_lat = In_pix_lat*CONST_degree;
-			pix_long = In_pix_long*CONST_degree;
-			arg = cos(0.5*CONST_pi - pix_lat)*cos(0.5*CONST_pi - tempLatSite) + sin(0.5*CONST_pi - pix_lat)*sin(0.5*CONST_pi - tempLatSite)*cos(pix_long - tempLongSite);
-			alpha = acos(arg);
-			dist = alpha*CONST_R_earth;
+			
+			
 			//calcola elevation del centro dell'ionpixel
             ion_elev = CONST_HD/dist - dist/(2.*CONST_R_earth);
             //calcola azimut dell'ionpixel
