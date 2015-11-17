@@ -16,11 +16,11 @@ FoV::~FoV()
 
 //#include "resource.h"
 
-//// your path for this include may vary
-#include "GraphicsFramework.h"
+// your path for this include may vary
+//#include "GraphicsFramework.h"
 
-// Global variable to store the graphics framwork object
-GraphicsFramework* PGraphics;
+//// Global variable to store the graphics framwork object
+//GraphicsFramework* PGraphics;
 
 //HWND HOutput = 0;  // handle to the output control
 //HWND HDialog = 0;
@@ -34,6 +34,12 @@ struct Vector2 {
 	// default constructor - sets coordinates to 0
 	Vector2() {
 		x = y = 0.0;
+	}
+
+	Vector2(double In_x, double In_y)
+	{
+		x = In_x;
+		y = In_y;
 	}
 
 	// returns the squared length of this vector
@@ -84,66 +90,66 @@ int Sign(int x) {
 }
 
 
-void Circle(int xCenter, int yCenter, int r, unsigned int color) {
-	double d;
-	int rSquared;
-	int x, y;
-
-	rSquared = r * r;
-
-	x = 0;
-	y = r;
-
-	d = rSquared - ((x + 1) * (x + 1) + (y - 0.5) * (y - 0.5));
-
-	while (y >= x) {
-		PGraphics->AddPoint(xCenter + x, yCenter + y, color);
-		PGraphics->AddPoint(xCenter - x, yCenter + y, color);
-		PGraphics->AddPoint(xCenter + x, yCenter - y, color);
-		PGraphics->AddPoint(xCenter - x, yCenter - y, color);
-		PGraphics->AddPoint(xCenter + y, yCenter + x, color);
-		PGraphics->AddPoint(xCenter - y, yCenter + x, color);
-		PGraphics->AddPoint(xCenter + y, yCenter - x, color);
-		PGraphics->AddPoint(xCenter - y, yCenter - x, color);
-		if (d > 0) {
-		}
-		else {
-			y--;
-		}
-		x++;
-		d = rSquared - ((x + 1) * (x + 1) + (y - 0.5) * (y - 0.5));
-	}
-}
+//void Circle(int xCenter, int yCenter, int r, unsigned int color) {
+//	double d;
+//	int rSquared;
+//	int x, y;
+//
+//	rSquared = r * r;
+//
+//	x = 0;
+//	y = r;
+//
+//	d = rSquared - ((x + 1) * (x + 1) + (y - 0.5) * (y - 0.5));
+//
+//	while (y >= x) {
+//		PGraphics->AddPoint(xCenter + x, yCenter + y, color);
+//		PGraphics->AddPoint(xCenter - x, yCenter + y, color);
+//		PGraphics->AddPoint(xCenter + x, yCenter - y, color);
+//		PGraphics->AddPoint(xCenter - x, yCenter - y, color);
+//		PGraphics->AddPoint(xCenter + y, yCenter + x, color);
+//		PGraphics->AddPoint(xCenter - y, yCenter + x, color);
+//		PGraphics->AddPoint(xCenter + y, yCenter - x, color);
+//		PGraphics->AddPoint(xCenter - y, yCenter - x, color);
+//		if (d > 0) {
+//		}
+//		else {
+//			y--;
+//		}
+//		x++;
+//		d = rSquared - ((x + 1) * (x + 1) + (y - 0.5) * (y - 0.5));
+//	}
+//}
 
 // function to draw a line between two points
-void DrawLine(int x1, int y1, int x2, int y2, unsigned int color) {
-	int dx, dy;						 // dy / dx is the slope
-	int x, y;						   // loop and point variables
-
-	// calculate changes in y and x between the points
-	dy = y2 - y1;
-	dx = x2 - x1;
-
-	if (Abs(dy) > Abs(dx)) {
-		// since there is a greater change in y than x we must
-		// loop in y, calculate x and draw
-		for (y = y1; y != y2; y += Sign(dy)) {
-			x = x1 + (y - y1) * dx / dy;
-			PGraphics->AddPoint(x, y, color);
-		}
-	}
-	else {
-		// since there is a greater (or equal) change in x than y we must
-		// loop in x, calculate y and draw
-		for (x = x1; x != x2; x += Sign(dx)) {
-			y = y1 + (x - x1) * dy / dx;
-			PGraphics->AddPoint(x, y, color);
-		}
-	}
-
-	// draw the last pixel
-	PGraphics->AddPoint(x2, y2, color);
-}
+//void DrawLine(int x1, int y1, int x2, int y2, unsigned int color) {
+//	int dx, dy;						 // dy / dx is the slope
+//	int x, y;						   // loop and point variables
+//
+//	// calculate changes in y and x between the points
+//	dy = y2 - y1;
+//	dx = x2 - x1;
+//
+//	if (Abs(dy) > Abs(dx)) {
+//		// since there is a greater change in y than x we must
+//		// loop in y, calculate x and draw
+//		for (y = y1; y != y2; y += Sign(dy)) {
+//			x = x1 + (y - y1) * dx / dy;
+//			PGraphics->AddPoint(x, y, color);
+//		}
+//	}
+//	else {
+//		// since there is a greater (or equal) change in x than y we must
+//		// loop in x, calculate y and draw
+//		for (x = x1; x != x2; x += Sign(dx)) {
+//			y = y1 + (x - x1) * dy / dx;
+//			PGraphics->AddPoint(x, y, color);
+//		}
+//	}
+//
+//	// draw the last pixel
+//	PGraphics->AddPoint(x2, y2, color);
+//}
 
 // function to return the bounding angle of a camera's field of view
 // assumes camera is at the origin
@@ -168,6 +174,25 @@ void GetFOVExtents(Vector2 camDir, double fov, Vector2* v1, Vector2* v2) {
 	v1->y = sin(a1);
 	v2->x = cos(a2);
 	v2->y = sin(a2);
+}
+
+/*questa funzione esegue il test in 2d del FoV e restituisce un valore di verità
+a seconda che il punto appartenga o meno al campo di vista.*/
+bool FoV::FoVchk2d(double CamDirX, double CamDirY, double pointX, double pointY, double In_FoV)
+{
+	double fov=In_FoV;
+	Vector2 camDirection=Vector2(CamDirX,CamDirY);
+	Vector2 userPoint=Vector2(pointX,pointY);
+	
+	//Vector2 fovPt1, fovPt2;
+	//GetFOVExtents(camDirection, fov, &fovPt1, &fovPt2);
+	//fovPt1.scale(50);
+	//fovPt2.scale(50);
+
+	if (acos(Vector2Dot(camDirection, userPoint) / (camDirection.length() * userPoint.length())) * (180 / PI) <= fov / 2)
+		return true;
+	else
+		return false;
 }
 //
 //void DrawStuff() {
