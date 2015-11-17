@@ -159,53 +159,52 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 	double pixel_theta, pixel_phi;
 
 	int res = GetResolution();
-	for (auto k :Mirror1)
-		{
-			ActualRelPixel = k.second;
-			relpix_elev = ActualRelPixel->GetPixElev();
-			relpix_azimut = ActualRelPixel->GetPixAzimut();
-			RelpixLocation = Vector3D(1.,1.,1.);
-			RelpixLocation.SetMag(1.);
-			RelpixLocation.SetTheta(relpix_elev);
-			RelpixLocation.SetPhi(relpix_azimut);
-			
-			
-			//calcola elevation del centro dell'ionpixel
-            ion_elev = CONST_HD/dist - dist/(2.*CONST_R_earth);
-            //calcola azimut dell'ionpixel
-			IonLocation = Vector3D(1., 1., 1.);
-            IonLocation.SetMag(1.);
-            IonLocation.SetPhi(pix_long/CONST_degree);
-            IonLocation.SetTheta(0.5*CONST_pi-pix_lat/CONST_degree);
-			// se il metodo richiede un puntatore devi passargli un riferimento
-            Est = LocalNord.Cross(&RelpixLocation);
-            Est.SetMag(1.);
-            Avector = RelpixLocation.Cross(&IonLocation);
-            Avector.SetMag(1.);
-            Bvector = Avector.Cross(&RelpixLocation);
-            Bvector.SetMag(1.);
-            Vertic = Bvector.Cross(&Est);
-            ion_azimut = Bvector.Angle(&Est); //già in gradi
-            if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
-            //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
-			
-			pixel_theta=(28.1/22); //ampiezza (gradi) in elevation di un pixel
-		    pixel_phi=(30/20);  //ampiezza (gradi) in azimut di un pixel
-
-            if(ion_azimut<(relpix_azimut+0.5*pixel_theta) && ion_azimut>(relpix_azimut-0.5*pixel_theta))
-            {
-            	if(ion_elev<(relpix_elev+0.5*pixel_phi) && ion_elev>(relpix_elev-0.5*pixel_phi))
-            	{
-					/*
-					questo è il codice da usare per mettere il riferimento nella matrice
-					dato che ActualRelPixel è già un puntatore, non c'è bisogno della &
-					*/
-					SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
-					SeenMatrixIndex++;
-					//cout << "finalmente" << endl;
-            	}
-            }
-		}
+	//for (auto k :Mirror1)
+	//	{
+		//	ActualRelPixel = k.second;
+		//	relpix_elev = ActualRelPixel->GetPixElev();
+		//	relpix_azimut = ActualRelPixel->GetPixAzimut();
+		//	RelpixLocation = Vector3D(1.,1.,1.);
+		//	RelpixLocation.SetMag(1.);
+		//	RelpixLocation.SetTheta(relpix_elev);
+		//	RelpixLocation.SetPhi(relpix_azimut);
+		//	
+		//	
+		//	//calcola elevation del centro dell'ionpixel
+  //          ion_elev = CONST_HD/dist - dist/(2.*CONST_R_earth);
+  //          //calcola azimut dell'ionpixel
+		//	IonLocation = Vector3D(1., 1., 1.);
+  //          IonLocation.SetMag(1.);
+  //          IonLocation.SetPhi(pix_long/CONST_degree);
+  //          IonLocation.SetTheta(0.5*CONST_pi-pix_lat/CONST_degree);
+		//	// se il metodo richiede un puntatore devi passargli un riferimento
+  //          Est = LocalNord.Cross(&RelpixLocation);
+  //          Est.SetMag(1.);
+  //          Avector = RelpixLocation.Cross(&IonLocation);
+  //          Avector.SetMag(1.);
+  //          Bvector = Avector.Cross(&RelpixLocation);
+  //          Bvector.SetMag(1.);
+  //          Vertic = Bvector.Cross(&Est);
+  //          ion_azimut = Bvector.Angle(&Est); //già in gradi
+  //          if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
+  //          //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
+		//	
+		//	pixel_theta=(28.1/22); //ampiezza (gradi) in elevation di un pixel
+		//    pixel_phi=(30/20);  //ampiezza (gradi) in azimut di un pixel
+  //          if(ion_azimut<(relpix_azimut+0.5*pixel_theta) && ion_azimut>(relpix_azimut-0.5*pixel_theta))
+  //          {
+  //          	if(ion_elev<(relpix_elev+0.5*pixel_phi) && ion_elev>(relpix_elev-0.5*pixel_phi))
+  //          	{
+		//			/*
+		//			questo è il codice da usare per mettere il riferimento nella matrice
+		//			dato che ActualRelPixel è già un puntatore, non c'è bisogno della &
+		//			*/
+		//			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
+		//			SeenMatrixIndex++;
+		//			//cout << "finalmente" << endl;
+  //          	}
+  //          }
+		//}
 	//if (SeenMatrixIndex!=0) cout << SeenMatrixIndex << endl;
 	return SeenMatrix;
 }

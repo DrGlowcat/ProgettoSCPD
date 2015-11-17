@@ -1,13 +1,14 @@
 // SimulatoreELVES.cpp : definisce il punto di ingresso dell'applicazione console.
 //
 #include "stdafx.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include "Fulmine.h"
-#include "Tools.h"
-#include "Rilevatore.h"
-#include "Ionosfera.h"
+//#include <iostream>
+//#include <fstream>
+//#include <string>
+//#include "Fulmine.h"
+//#include "Tools.h"
+//#include "Rilevatore.h"
+//#include "Ionosfera.h"
+#include "FoV.h"
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -19,13 +20,28 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	/*Rilevatore testrel;
 	testrel = Rilevatore(0.1, 0.2, 0.3);*/
-	map<int, Rilevatore*> ProvaMultiRel;
-	for (int i = 0; i < 4; i++)
+	//map<int, Rilevatore*> ProvaMultiRel;
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	ProvaMultiRel[i] = new Rilevatore(latsites[i], longsites[i], backwall[i]);
+	//}
+	//Rilevatore* estrazione = ProvaMultiRel[2];
+	//Ionosfera testIonosfera = Ionosfera(IonXRes, IonYRes, CONST_R_earth, augerCentre[0], augerCentre[1], deltaLong, deltaLat, ProvaMultiRel);
+
+	bool chk;
+	FoV XYTest;
+	chk = XYTest.FoVchk2d(1.0, 0.0, 0.0, 1.0, 45.0);
+	if (chk)
 	{
-		ProvaMultiRel[i] = new Rilevatore(latsites[i], longsites[i], backwall[i]);
+		cout << "dentro"<<endl;
 	}
-	Rilevatore* estrazione = ProvaMultiRel[2];
-	Ionosfera testIonosfera = Ionosfera(IonXRes, IonYRes, CONST_R_earth, augerCentre[0], augerCentre[1], deltaLong, deltaLat, ProvaMultiRel);
+	else
+	{
+		cout << "fuori"<<endl;
+	}
+
+	int fine;
+	cin >>  fine;
 
 	///*
 	//Inizializzazione del DB dei fulmini:
