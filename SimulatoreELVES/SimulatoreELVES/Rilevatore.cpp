@@ -50,6 +50,12 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	{
 		map<int, RelPixel*> EmptyMatrix;
 		Matrice_Osservazione = EmptyMatrix;
+		Mirror1 = EmptyMatrix;
+		Mirror2 = EmptyMatrix;
+		Mirror3 = EmptyMatrix;
+		Mirror4 = EmptyMatrix;
+		Mirror5 = EmptyMatrix;
+		Mirror6 = EmptyMatrix;
 	}
 	else
 	{
