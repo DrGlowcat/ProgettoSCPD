@@ -22,7 +22,7 @@ Rilevatore::Rilevatore()
 	Status = false;
 	ResolutionX = 0;
 	ResolutionY = 0;
-	if (Matrice_Osservazione.empty())
+	if (Mirror1.empty())
 	{
 		map<int, RelPixel*> EmptyMatrix;
 		Mirror1 = EmptyMatrix;
@@ -46,10 +46,9 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 	Status = false;
 	ResolutionX = 20;
 	ResolutionY = 22;
-	if (!Matrice_Osservazione.empty())
+	if (!Mirror1.empty())
 	{
 		map<int, RelPixel*> EmptyMatrix;
-		Matrice_Osservazione = EmptyMatrix;
 		Mirror1 = EmptyMatrix;
 		Mirror2 = EmptyMatrix;
 		Mirror3 = EmptyMatrix;
@@ -163,8 +162,17 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 	double ion_elev, ion_azimut;
 	double pix_lat, pix_long;
 	double pixel_theta, pixel_phi;
-
 	int res = GetResolution();
+
+	//traslazione in modo da avere l'origine in concomitanza con il rilevatore
+	// traslazione eseguita con formula: vecchia_pos-nuova_coord
+	double traslated_pixLat = In_pix_lat - LatSite;
+	double traslated_pixLong = In_pix_long - LongSite;
+
+	for (auto k : Mirror1)
+	{
+		
+	}
 	//for (auto k :Mirror1)
 	//	{
 		//	ActualRelPixel = k.second;

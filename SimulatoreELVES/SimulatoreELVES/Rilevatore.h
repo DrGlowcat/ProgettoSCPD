@@ -20,8 +20,7 @@ private:
 	bool Status; //indica se acceso o spento.
 	int ResolutionX;
 	int ResolutionY;
-	map<int, RelPixel*> Matrice_Osservazione,
-		Mirror1,
+	map<int, RelPixel*> Mirror1,
 		Mirror2,
 		Mirror3,
 		Mirror4,
