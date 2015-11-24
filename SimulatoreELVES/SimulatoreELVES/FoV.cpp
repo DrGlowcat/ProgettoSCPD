@@ -178,7 +178,7 @@ void GetFOVExtents(Vector2 camDir, double fov, Vector2* v1, Vector2* v2) {
 
 /*questa funzione esegue il test in 2d del FoV e restituisce un valore di verità
 a seconda che il punto appartenga o meno al campo di vista.*/
-bool FoV::FoVchk2d(double CamDirX, double CamDirY, double pointX, double pointY, double In_FoV)
+ bool FoV::FoVchk2d(double CamDirX, double CamDirY, double pointX, double pointY, double In_FoV)
 {
 	double fov=In_FoV;
 	Vector2 camDirection=Vector2(CamDirX,CamDirY);

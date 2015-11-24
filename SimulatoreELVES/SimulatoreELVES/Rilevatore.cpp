@@ -9,6 +9,7 @@ ogni funzione le convertirò in radianti per i calcoli*/
 #include "RelPixel.h"
 #include "Ionosfera.h"
 #include "Tools.h"
+#include "FoV.h"
 
 
 Rilevatore::Rilevatore()
@@ -152,7 +153,6 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 	double tempLongSite = LongSite*CONST_degree;
 	double tempOrientation = Orientation*CONST_degree;//inutilizzato nel codice
 	map<int, RelPixel*> SeenMatrix;
-	int SeenMatrixIndex = { 0 };
 
 	RelPixel * ActualRelPixel;
 	double relpix_elev;
@@ -168,10 +168,30 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 	// traslazione eseguita con formula: vecchia_pos-nuova_coord
 	double traslated_pixLat = In_pix_lat - LatSite;
 	double traslated_pixLong = In_pix_long - LongSite;
+	//trasformazione del pixel in coordinate cartesiane (non mi fido dei tuoi angoli <.<)
+	double IonX = (2 * CONST_pi*CONST_R_earth*traslated_pixLat) / 360;
+	double IonY = (2 * CONST_pi*CONST_R_earth*traslated_pixLong) / 360;
+	double IonZ = CONST_HD;
 
+	int SeenMatrixIndex = { 0 };
 	for (auto k : Mirror1)
 	{
-		
+		ActualRelPixel=k.second;
+		double DirCamX = ActualRelPixel->GetPixElev();
+		double DirCamY = ActualRelPixel->GetPixAzimut();
+		//non sono sicuro
+		Vector3D Camera(1,1,1);
+		Camera.SetMag(1);
+		Camera.SetTheta(DirCamX);
+		Camera.SetPhi(DirCamY);
+		//fine parte di insicureza
+		bool testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonX, IonY, 28.1 / 22);
+		bool testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonX, IonZ, 30 / 20);
+		if (testXY && testXZ)
+		{
+			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
+			SeenMatrixIndex++;
+		}
 	}
 	//for (auto k :Mirror1)
 	//	{
