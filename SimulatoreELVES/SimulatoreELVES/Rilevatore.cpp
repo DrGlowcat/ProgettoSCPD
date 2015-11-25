@@ -64,75 +64,83 @@ Rilevatore::Rilevatore(double Lat, double Long, double r_e)
 		double HoriAngle = 0.0;
 		double pixX=0.5*45.6;
 		double pixY=0.5*26.33;
-		double pixel_theta=28.1/22; //ampiezza (gradi) in elevation di un pixel
-		double pixel_phi=30/20;  //ampiezza (gradi) in azimut di un pixel
+		double pixel_elev=28.1/22; //ampiezza (gradi) in elevation di un pixel
+		double pixel_azim=30/20;  //ampiezza (gradi) in azimut di un pixel
 		int ResCounter = 0;
 		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
 		{
 			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
 			{ 
-				PixOrientation += 30.;
-				Mirror1[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+				
+				Mirror1[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_elev, right_end + (i+0.5)*pixel_azim);
 				ResCounter++;
 				pixY += 26.33;
 			}
 			pixX += 45.6;
 			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
 		}
+		PixOrientation += 30.;
 		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
 		{
 			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
 			{ 
-				PixOrientation += 30.;
-				Mirror2[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+				
+				Mirror2[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_elev, right_end + (i+0.5)*pixel_azim);
 				ResCounter++;
 				pixY += 26.33;
 			}
 			pixX += 45.6;
 			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
 		}
+		PixOrientation += 30.;
 		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
 		{
 			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
 			{ 
-				PixOrientation += 30.;				
-				Mirror3[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+								
+				Mirror3[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_elev, right_end + (i+0.5)*pixel_azim);
 				ResCounter++;
 				pixY += 26.33;
 			}
 			pixX += 45.6;
 			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
 		}
+
+		PixOrientation += 30.;
 		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
 		{
 			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
 			{ 
-				PixOrientation += 30.;				
-				Mirror4[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+							
+				Mirror4[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_elev, right_end + (i+0.5)*pixel_azim);
 				ResCounter++;
 				pixY += 26.33;
 			}
 			pixX += 45.6;
 			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
 		}
-		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
-		{
-			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
-			{ 
-				PixOrientation += 30.;				
-				Mirror5[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
-				ResCounter++;
-				pixY += 26.33;
-			}
-			pixX += 45.6;
-			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
-		}
+
+		PixOrientation += 30.;
 		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
 		{
 			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
 			{ 
 				PixOrientation += 30.;				
-				Mirror6[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_theta, right_end + (i+0.5)*pixel_phi);
+				Mirror5[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_elev, right_end + (i+0.5)*pixel_azim);
+				ResCounter++;
+				pixY += 26.33;
+			}
+			pixX += 45.6;
+			pixY = 0.5*26.33;//dopo un ciclo di y lo si riporta ad un valore iniziale
+		}
+
+		PixOrientation += 30.;
+		for (int i = 0; i < ResolutionY; i++)//ciclo sulle righe
+		{
+			for(int j=0; j< ResolutionX; j++)//ciclo sulle colonne
+			{ 
+								
+				Mirror6[ResCounter] = new RelPixel(pixX, pixY, PixOrientation, 28.1 - (j+0.5)*pixel_elev, right_end + (i+0.5)*pixel_azim);
 				ResCounter++;
 				pixY += 26.33;
 			}
@@ -155,13 +163,13 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 	map<int, RelPixel*> SeenMatrix;
 
 	RelPixel * ActualRelPixel;
-	double relpix_elev;
-	double relpix_azimut;
+	//double relpix_elev;
+	//double relpix_azimut;
 	Vector3D RelpixLocation;
 	Vector3D IonLocation;
-	double ion_elev, ion_azimut;
-	double pix_lat, pix_long;
-	double pixel_theta, pixel_phi;
+	//double ion_elev, ion_azimut;
+	//double pix_lat, pix_long;
+	//double pixel_elev, pixel_azim;
 	int res = GetResolution();
 
 	//traslazione in modo da avere l'origine in concomitanza con il rilevatore
@@ -174,23 +182,28 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 	double IonZ = CONST_HD;
 
 	int SeenMatrixIndex = { 0 };
+	double DirCamXZ;
+	double DirCamXY;
+	bool testXY=false;
+	bool testXZ = false;
 	for (auto k : Mirror1)
 	{
 		ActualRelPixel=k.second;
-		double DirCamX = ActualRelPixel->GetPixElev();
-		double DirCamY = ActualRelPixel->GetPixAzimut();
+		DirCamXZ = ActualRelPixel->GetPixElev();
+		DirCamXY = ActualRelPixel->GetPixAzimut();
 		//non sono sicuro
+		//dovrebbe andare bene in quanto mi basta un vettore che sia parallelo a dove
+		//guarda il pixel
 		Vector3D Camera(1,1,1);
-		Camera.SetMag(1);
-		Camera.SetTheta(DirCamX);
-		Camera.SetPhi(DirCamY);
+		Camera.SetAzEl(DirCamXY, DirCamXZ);
 		//fine parte di insicureza
-		bool testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonX, IonY, 28.1 / 22);
-		bool testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonX, IonZ, 30 / 20);
+		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonX, IonY, 28.1 / 22);
+		testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonX, IonZ, 30 / 20);
 		if (testXY && testXZ)
 		{
 			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
 			SeenMatrixIndex++;
+			cout << "\a";
 		}
 	}
 	//for (auto k :Mirror1)
@@ -223,11 +236,11 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
   //          if(Vertic.Dot(&RelpixLocation)>0.) ion_azimut = -ion_azimut;
   //          //controlla se ionpixel è nel fov del k-esimo pixel del rivelatore
 		//	
-		//	pixel_theta=(28.1/22); //ampiezza (gradi) in elevation di un pixel
-		//    pixel_phi=(30/20);  //ampiezza (gradi) in azimut di un pixel
-  //          if(ion_azimut<(relpix_azimut+0.5*pixel_theta) && ion_azimut>(relpix_azimut-0.5*pixel_theta))
+		//	pixel_elev=(28.1/22); //ampiezza (gradi) in elevation di un pixel
+		//    pixel_azim=(30/20);  //ampiezza (gradi) in azimut di un pixel
+  //          if(ion_azimut<(relpix_azimut+0.5*pixel_elev) && ion_azimut>(relpix_azimut-0.5*pixel_elev))
   //          {
-  //          	if(ion_elev<(relpix_elev+0.5*pixel_phi) && ion_elev>(relpix_elev-0.5*pixel_phi))
+  //          	if(ion_elev<(relpix_elev+0.5*pixel_azim) && ion_elev>(relpix_elev-0.5*pixel_azim))
   //          	{
 		//			/*
 		//			questo è il codice da usare per mettere il riferimento nella matrice

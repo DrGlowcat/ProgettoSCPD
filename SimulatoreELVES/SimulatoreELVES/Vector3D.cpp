@@ -141,3 +141,10 @@ double Vector3D::Angle(Vector3D *v)
 		return angle / CONST_degree;
 	}
 }
+
+void Vector3D::SetAzEl(double In_Azimuth, double In_Elevation, double In_Rad)
+{
+	this->comp_x = In_Rad*cos(In_Elevation)*cos(In_Azimuth);
+	this->comp_y = In_Rad*cos(In_Elevation)*sin(In_Azimuth);
+	this->comp_z = In_Rad*sin(In_Elevation);
+}

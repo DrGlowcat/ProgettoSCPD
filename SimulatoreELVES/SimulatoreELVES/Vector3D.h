@@ -34,6 +34,7 @@ public:
 	double GetPhi();  //restituisce azimut
 	double Angle(Vector3D *);  //angolo tra due vettori
 	void SetMag(double);  //imposta la norma di un vettore al valore del double fornito
+	void SetAzEl(double In_Azimuth, double In_Elevation, double In_Rad=1);
 };
 #endif /* VECTOR3D_H_ */
 
