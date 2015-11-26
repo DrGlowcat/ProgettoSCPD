@@ -20,9 +20,9 @@ con tutta la sua algebra
 //#define CONST_r_earth 6371;  //raggio terrestre in km
 
 double const CONST_spdoflight { 0.3 };  //in km/microsec
-double const CONST_pi { 3.14159265359 };
-double const CONST_degree { CONST_pi / 180 };  //conversione gradi-radianti
-double const CONST_R_earth { 6371 };  //raggio terrestre in km
+double const CONST_pi{ 3.1415926535897932384626433832795 };
+double const CONST_degree = CONST_pi / 180.0;  //conversione gradi-radianti
+double const CONST_R_earth { 6371.0 };  //raggio terrestre in km
 double const CONST_HD { 9000 };   //altezza dello strato di emissione
 /**/
 

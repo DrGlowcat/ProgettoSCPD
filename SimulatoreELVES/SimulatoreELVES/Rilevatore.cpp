@@ -157,29 +157,22 @@ Rilevatore::~Rilevatore()
 
 map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 {
-	double tempLatSite = LatSite*CONST_degree;
-	double tempLongSite = LongSite*CONST_degree;
-	double tempOrientation = Orientation*CONST_degree;//inutilizzato nel codice
 	map<int, RelPixel*> SeenMatrix;
 
 	RelPixel * ActualRelPixel;
-	//double relpix_elev;
-	//double relpix_azimut;
-	Vector3D RelpixLocation;
+	Vector3D CamLocation;
 	Vector3D IonLocation;
-	//double ion_elev, ion_azimut;
-	//double pix_lat, pix_long;
-	//double pixel_elev, pixel_azim;
-	int res = GetResolution();
 
-	//traslazione in modo da avere l'origine in concomitanza con il rilevatore
-	// traslazione eseguita con formula: vecchia_pos-nuova_coord
-	double traslated_pixLat = In_pix_lat - LatSite;
-	double traslated_pixLong = In_pix_long - LongSite;
-	//trasformazione del pixel in coordinate cartesiane (non mi fido dei tuoi angoli <.<)
-	double IonX = (2 * CONST_pi*CONST_R_earth*traslated_pixLat) / 360;
-	double IonY = (2 * CONST_pi*CONST_R_earth*traslated_pixLong) / 360;
-	double IonZ = CONST_HD;
+	//coordinate assolute aventi origine il centro della terra
+	Vector3D CamLocationABS; CamLocationABS.SetAzEl(0.0, 90.0, CONST_R_earth * 1000); 
+	Vector3D IonLocationABS; IonLocationABS.SetAzEl(In_pix_long, In_pix_lat, (CONST_R_earth * 1000) + CONST_HD);
+	//ora trasliamo le suddette in modo da ottenere un sistema centrato nel rilevatore
+	CamLocation = CamLocationABS; CamLocation.SetZ(IonLocation.GetZ() - (CONST_R_earth * 1000));
+	IonLocation = IonLocationABS; IonLocation.SetZ(IonLocation.GetZ() - (CONST_R_earth * 1000));
+	//a questo punto ho due coordinate le quali tengono conto della curvatura terrestre
+	// ovviamnete, per non uscire pazzo, per me la terra è sferica.
+
+	
 
 	int SeenMatrixIndex = { 0 };
 	double DirCamXZ;
@@ -197,8 +190,8 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 		Vector3D Camera(1,1,1);
 		Camera.SetAzEl(DirCamXY, DirCamXZ);
 		//fine parte di insicureza
-		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonX, IonY, 28.1 / 22);
-		testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonX, IonZ, 30 / 20);
+		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonLocation.GetX(), IonLocation.GetY(), 28.1 / 22);
+		testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonLocation.GetX(), IonLocation.GetZ(), 30 / 20);
 		if (testXY && testXZ)
 		{
 			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
