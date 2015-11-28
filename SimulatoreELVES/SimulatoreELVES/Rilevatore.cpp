@@ -181,13 +181,118 @@ map<int, RelPixel*> Rilevatore::Rel2Ion(double In_pix_lat, double In_pix_long)
 	bool testXZ = false;
 	for (auto k : Mirror1)
 	{
-		ActualRelPixel=k.second;
+		ActualRelPixel = k.second;
 		DirCamXZ = ActualRelPixel->GetPixElev();
 		DirCamXY = ActualRelPixel->GetPixAzimut();
 		//non sono sicuro
 		//dovrebbe andare bene in quanto mi basta un vettore che sia parallelo a dove
 		//guarda il pixel
-		Vector3D Camera(1,1,1);
+		Vector3D Camera(1, 1, 1);
+		Camera.SetAzEl(DirCamXY, DirCamXZ);
+		//fine parte di insicureza
+		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonLocation.GetX(), IonLocation.GetY(), 28.1 / 22);
+		testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonLocation.GetX(), IonLocation.GetZ(), 30 / 20);
+		if (testXY && testXZ)
+		{
+			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
+			SeenMatrixIndex++;
+			cout << "\a";
+		}
+	}
+
+	for (auto k : Mirror2)
+	{
+		ActualRelPixel = k.second;
+		DirCamXZ = ActualRelPixel->GetPixElev();
+		DirCamXY = ActualRelPixel->GetPixAzimut();
+		//non sono sicuro
+		//dovrebbe andare bene in quanto mi basta un vettore che sia parallelo a dove
+		//guarda il pixel
+		Vector3D Camera(1, 1, 1);
+		Camera.SetAzEl(DirCamXY, DirCamXZ);
+		//fine parte di insicureza
+		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonLocation.GetX(), IonLocation.GetY(), 28.1 / 22);
+		testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonLocation.GetX(), IonLocation.GetZ(), 30 / 20);
+		if (testXY && testXZ)
+		{
+			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
+			SeenMatrixIndex++;
+			cout << "\a";
+		}
+	}
+
+	for (auto k : Mirror3)
+	{
+		ActualRelPixel = k.second;
+		DirCamXZ = ActualRelPixel->GetPixElev();
+		DirCamXY = ActualRelPixel->GetPixAzimut();
+		//non sono sicuro
+		//dovrebbe andare bene in quanto mi basta un vettore che sia parallelo a dove
+		//guarda il pixel
+		Vector3D Camera(1, 1, 1);
+		Camera.SetAzEl(DirCamXY, DirCamXZ);
+		//fine parte di insicureza
+		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonLocation.GetX(), IonLocation.GetY(), 28.1 / 22);
+		testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonLocation.GetX(), IonLocation.GetZ(), 30 / 20);
+		if (testXY && testXZ)
+		{
+			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
+			SeenMatrixIndex++;
+			cout << "\a";
+		}
+	}
+
+	for (auto k : Mirror4)
+	{
+		ActualRelPixel = k.second;
+		DirCamXZ = ActualRelPixel->GetPixElev();
+		DirCamXY = ActualRelPixel->GetPixAzimut();
+		//non sono sicuro
+		//dovrebbe andare bene in quanto mi basta un vettore che sia parallelo a dove
+		//guarda il pixel
+		Vector3D Camera(1, 1, 1);
+		Camera.SetAzEl(DirCamXY, DirCamXZ);
+		//fine parte di insicureza
+		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonLocation.GetX(), IonLocation.GetY(), 28.1 / 22);
+		testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonLocation.GetX(), IonLocation.GetZ(), 30 / 20);
+		if (testXY && testXZ)
+		{
+			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
+			SeenMatrixIndex++;
+			cout << "\a";
+		}
+	}
+
+	for (auto k : Mirror5)
+	{
+		ActualRelPixel = k.second;
+		DirCamXZ = ActualRelPixel->GetPixElev();
+		DirCamXY = ActualRelPixel->GetPixAzimut();
+		//non sono sicuro
+		//dovrebbe andare bene in quanto mi basta un vettore che sia parallelo a dove
+		//guarda il pixel
+		Vector3D Camera(1, 1, 1);
+		Camera.SetAzEl(DirCamXY, DirCamXZ);
+		//fine parte di insicureza
+		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonLocation.GetX(), IonLocation.GetY(), 28.1 / 22);
+		testXZ = FoV::FoVchk2d(Camera.GetX(), Camera.GetZ(), IonLocation.GetX(), IonLocation.GetZ(), 30 / 20);
+		if (testXY && testXZ)
+		{
+			SeenMatrix[SeenMatrixIndex] = ActualRelPixel;
+			SeenMatrixIndex++;
+			cout << "\a";
+		}
+	}
+
+	for (auto k : Mirror6)
+	{
+		ActualRelPixel = k.second;
+		DirCamXZ = ActualRelPixel->GetPixElev();
+		DirCamXY = ActualRelPixel->GetPixAzimut();
+		//non sono sicuro
+		//dovrebbe andare bene in quanto mi basta un vettore che sia parallelo a dove
+		//guarda il pixel
+		Vector3D Camera(1, 1, 1);
 		Camera.SetAzEl(DirCamXY, DirCamXZ);
 		//fine parte di insicureza
 		testXY = FoV::FoVchk2d(Camera.GetX(), Camera.GetY(), IonLocation.GetX(), IonLocation.GetY(), 28.1 / 22);

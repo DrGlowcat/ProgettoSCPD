@@ -156,32 +156,32 @@ int Sign(int x) {
 // v1, v2 will be filled in with the 1st & 2nd (going CCW) bounding vectors
 // for the given camera direction and field of view
 // v1 and v2 will be normalized
-void GetFOVExtents(Vector2 camDir, double fov, Vector2* v1, Vector2* v2) {
-	double camAngle;		// camera angle in standard position
-	double a1, a2;		  // angles of fov bounding vectors v1 & v2 in std pos
-
-	// calculate the camera angle = arctan(y/x)
-	// use the atan2 function to account for different quadrants
-	camAngle = atan2(camDir.y, camDir.x);
-
-	// calculate the angles of the bounding vectors on either side of the fov
-	// fov is in degrees must convert to radians in calculations
-	a1 = camAngle - fov / 2 * (PI / 180);
-	a2 = camAngle + fov / 2 * (PI / 180);
-
-	// calculate the fov bounding vectors
-	v1->x = cos(a1);
-	v1->y = sin(a1);
-	v2->x = cos(a2);
-	v2->y = sin(a2);
-}
+//void GetFOVExtents(Vector2 camDir, double fov, Vector2* v1, Vector2* v2) {
+//	double camAngle;		// camera angle in standard position
+//	double a1, a2;		  // angles of fov bounding vectors v1 & v2 in std pos
+//
+//	// calculate the camera angle = arctan(y/x)
+//	// use the atan2 function to account for different quadrants
+//	camAngle = atan2(camDir.y, camDir.x);
+//
+//	// calculate the angles of the bounding vectors on either side of the fov
+//	// fov is in degrees must convert to radians in calculations
+//	a1 = camAngle - fov / 2 * (PI / 180);
+//	a2 = camAngle + fov / 2 * (PI / 180);
+//
+//	// calculate the fov bounding vectors
+//	v1->x = cos(a1);
+//	v1->y = sin(a1);
+//	v2->x = cos(a2);
+//	v2->y = sin(a2);
+//}
 
 /*questa funzione esegue il test in 2d del FoV e restituisce un valore di verità
 a seconda che il punto appartenga o meno al campo di vista.*/
  bool FoV::FoVchk2d(double CamDirX, double CamDirY, double pointX, double pointY, double In_FoV)
 {
 	double fov=In_FoV;
-	Vector2 camDirection=Vector2(CamDirX,CamDirY);
+	Vector2 camDirection = Vector2(CamDirX, CamDirY); camDirection.scale(1000.0);
 	Vector2 userPoint=Vector2(pointX,pointY);
 	
 	//Vector2 fovPt1, fovPt2;

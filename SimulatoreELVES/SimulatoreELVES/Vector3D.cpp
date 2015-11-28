@@ -147,13 +147,14 @@ void Vector3D::SetAzEl(double In_Azimuth, double In_Elevation, double In_Rad)
 {
 	double eps = std::numeric_limits<double>::epsilon();
 	double CosElev, CosAzim, SinElev, SinAzim;
-	if (cos(In_Elevation*CONST_degree) < eps)CosElev = 0; else CosElev = cos(In_Elevation*CONST_degree);
-	if (cos(In_Azimuth *CONST_degree) < eps)CosAzim = 0; else CosAzim = cos(In_Azimuth*CONST_degree);
-	if (sin(In_Elevation*CONST_degree) < eps)SinElev = 0; else SinElev = sin(In_Elevation*CONST_degree);
-	if (sin(In_Azimuth*CONST_degree) < eps)SinAzim = 0; else SinAzim = sin(In_Azimuth*CONST_degree);
+	if (abs(cos(In_Elevation*CONST_degree)) < eps)CosElev = 0.0; else CosElev = cos(In_Elevation*CONST_degree);
+	if (abs(cos(In_Azimuth *CONST_degree)) < eps)CosAzim = 0.0; else CosAzim = cos(In_Azimuth*CONST_degree);
+	if (abs(sin(In_Elevation*CONST_degree)) < eps)SinElev = 0.0; else SinElev = sin(In_Elevation*CONST_degree);
+	if (abs(sin(In_Azimuth*CONST_degree)) < eps)SinAzim = 0.0; else SinAzim = sin(In_Azimuth*CONST_degree);
 
 	comp_x = In_Rad*CosElev*CosAzim;
 	//comp_x = cos(90*CONST_pi/180);
 	comp_y = In_Rad*CosElev*SinAzim;
 	comp_z = In_Rad*SinElev;
+	//comp_z = sin(In_Elevation*CONST_degree);
 }
